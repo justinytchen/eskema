@@ -5,43 +5,40 @@ import {Form} from 'react-bootstrap';
 import './Widget.css';
 import {Rnd} from 'react-rnd';
 
-class TextWidget extends Component{
+class TextFieldWidget extends Component{
     constructor(props){
         super(props);
         this.state = {
             editMode: true,
-            value:0
+            text:"zzzzz"
         };
         this.textInput = React.createRef();
+        this.containerRef = React.createRef();
     }
 
 
     handleKeyPress(target) {
-      if(target.charCode==13){
+        if(target.charCode==13){
           this.setState({
-              editMode: false,
               text: this.textInput.current.value
           }); 
+          this.containerRef.current.toggleEditMode();
       } 
     }
     
     renderEditMode(){
         return (
-            <div className="number-widget">
-                <input type="number" 
-                autoFocus 
+            <div className="text-widget">
+                <Form.Control autoFocus 
                 autoComplete="none" 
-                defaultValue = {this.state.value} 
-                ref={this.textInput} 
-                size="1"
-                onKeyPress={this.handleKeyPress.bind(this)}/>
+                defaultValue = {this.state.text} ref={this.textInput} onKeyPress={this.handleKeyPress.bind(this)}/>
             </div>
         );
     }
     
     renderDisplayMode(){
         return (
-            <div className="number-widget">
+            <div className="text-widget">
                 {this.state.text}
             </div>
         );
@@ -56,6 +53,7 @@ class TextWidget extends Component{
     render(){
         return (
             <WidgetContainer 
+                ref = {this.containerRef}
                 toDisplayMode = {() => this.toDisplayMode()}
                 renderEditMode = {() => this.renderEditMode()}
                 renderDisplayMode = {() => this.renderDisplayMode()}
@@ -65,4 +63,4 @@ class TextWidget extends Component{
     }
 }
 
-export default TextWidget;
+export default TextFieldWidget;

@@ -1,24 +1,20 @@
 import React, {Component} from 'react';
 import Draggable from 'react-draggable';
-import TextWidget from './widgets/TextWidget';
+import TextFieldWidget from './widgets/TextFieldWidget';
 import NumberWidget from './widgets/NumberWidget';
+import DashboardCanvas from './DashboardCanvas';
+import DashboardNav from './DashboardNav';
 
 class DashboardViewer extends Component{
-
-
-    toggleEditMode(){
-        console.log("double clicked");
-    }
-  render(){
+    render(){
       
-    return (
-      <div className="DashboardViewer">
-        viewer {this.props.match.params.id}
-        <TextWidget />
-        <NumberWidget />
-      </div>
-    );
-  }
+        return (
+            <div className="dashboard-viewer">
+                <DashboardNav />
+                <DashboardCanvas />
+            </div>
+        );
+    }
 }
 
 export default DashboardViewer;
