@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Draggable from 'react-draggable';
-import TextFieldWidget from './widgets/TextFieldWidget';
-import NumberWidget from './widgets/NumberWidget';
+import TextFieldWidget from '../widgets/TextFieldWidget';
+import NumberWidget from '../widgets/NumberWidget';
 
 class DashboardCanvas extends Component{
     render(){

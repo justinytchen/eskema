@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import Draggable from 'react-draggable';
-import TextFieldWidget from './widgets/TextFieldWidget';
-import NumberWidget from './widgets/NumberWidget';
 import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
+import { connect } from 'react-redux'
 
 class DashboardViewer extends Component{
     render(){
-      
+        console.log(this.props);
         return (
             <div className="dashboard-viewer">
                 <DashboardNav />
@@ -17,4 +15,11 @@ class DashboardViewer extends Component{
     }
 }
 
-export default DashboardViewer;
+const mapStateToProps = state => ({
+  widgets: state.widgets
+})
+
+
+export default connect(
+  mapStateToProps
+)(DashboardViewer)

@@ -57,7 +57,7 @@ class TextFieldWidget extends Component{
                 toDisplayMode = {() => this.toDisplayMode()}
                 renderEditMode = {() => this.renderEditMode()}
                 renderDisplayMode = {() => this.renderDisplayMode()}
-                enableResizing = {{top: true, bottom: true, left: true, right: true}}
+                enableResizing = {{top: false, bottom: false, left: true, right: true}}
             />
         );
     }

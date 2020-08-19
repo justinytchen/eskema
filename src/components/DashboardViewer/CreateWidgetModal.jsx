@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import Draggable from 'react-draggable';
-import TextFieldWidget from './widgets/TextFieldWidget';
-import NumberWidget from './widgets/NumberWidget';
-import {Row, Col, Button, Container, Modal} from 'react-bootstrap';
+import { Button, Modal} from 'react-bootstrap';
+import { connect } from 'react-redux'
+import { addWidget } from '../../actions'
 
 class CreateWidgetModal extends Component{
     constructor(props){
@@ -20,6 +19,7 @@ class CreateWidgetModal extends Component{
         this.setState({
             show:true
         });
+        this.props.dispatch(addWidget("ASDFASDF", "type1"))
     }
     
     render(){
@@ -48,4 +48,4 @@ class CreateWidgetModal extends Component{
     }
 }
 
-export default CreateWidgetModal;
+export default connect()(CreateWidgetModal)

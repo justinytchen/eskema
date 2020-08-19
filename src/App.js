@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import DashboardViewer from "./components/DashboardViewer";
+import DashboardViewer from "./components/DashboardViewer/DashboardViewer";
 import LandingPage from "./components/LandingPage";
 import Overview from "./components/Overview";
 
