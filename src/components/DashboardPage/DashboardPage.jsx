@@ -8,7 +8,7 @@ class DashboardPage extends Component{
         return (
             <div className="dashboard-viewer">
                 <DashboardNav />
-                <DashboardCanvas />
+                <DashboardCanvas widgets = {this.props.widgets}/>
             </div>
         );
     }
