@@ -5,7 +5,6 @@ class TextWidget extends Component{
     constructor(props){
         super(props);
         this.state = {
-            editMode: true,
             value:0
         };
         this.textInput = React.createRef();
@@ -15,7 +14,6 @@ class TextWidget extends Component{
     handleKeyPress(target) {
       if(target.charCode==13){
           this.setState({
-              editMode: false,
               text: this.textInput.current.value
           }); 
       } 
@@ -56,6 +54,7 @@ class TextWidget extends Component{
                 renderEditMode = {() => this.renderEditMode()}
                 renderDisplayMode = {() => this.renderDisplayMode()}
                 enableResizing = {{top: false, bottom: false, left: true, right: true}}
+                id = {this.props.id}
             />
         );
     }

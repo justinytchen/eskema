@@ -1,9 +1,8 @@
 let nextTodoId = 0
-export const addWidget = (text, widgetType) => ({
-    id: nextTodoId++,
+export const addWidget = (guid, widgetType) => ({
+    id: guid,
     type: 'ADD_WIDGET',
     widgetType: widgetType,
-    text
 })
 
 export const setVisibilityFilter = filter => ({
