@@ -14,24 +14,22 @@ class DashboardCanvas extends Component{
             var widget = this.props.widgets[i];
             contents.push(this.renderWidget(widget));
         }
-        console.log(contents);
         return contents;
     }
 
     renderWidget(widget){
-        console.log("render widget", widget);
-        console.log(WidgetType);
         switch(widget.widgetType){
             case WidgetType.TextFieldWidget:
-                return <TextFieldWidget key = {widget.id}/>;
+                return <TextFieldWidget key = {widget.id} id = {widget.id}/>;
             case WidgetType.NumberWidget:
-                return <NumberWidget key = {widget.id}/>;
+                return <NumberWidget key = {widget.id} id = {widget.id}/>;
             default:
                 return null;
         }
     }
 
     render(){
+        console.log(this.props);
         return (
             <div className="dashboard-canvas">
                 {this.renderWidgets()}

@@ -10,9 +10,13 @@ export const setVisibilityFilter = filter => ({
   filter
 })
 
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
+export const setWidgetPosDim = (id, x, y, width, height) => ({
+  id:id,
+  type: 'SET_WIDGET_POS_DIM',
+  x:x,
+  y:y,
+  width:width,
+  height:height
 })
 
 export const VisibilityFilters = {

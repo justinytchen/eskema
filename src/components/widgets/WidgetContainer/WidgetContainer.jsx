@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './WidgetContainer.css';
 import WidgetOptions from './WidgetOptions';
 import {Rnd} from 'react-rnd';
+import { setWidgetPosDim } from '../../../actions';
+import { connect } from 'react-redux';
 
 class WidgetContainer extends Component{
     constructor(props){
@@ -24,8 +26,22 @@ class WidgetContainer extends Component{
         });
     }
 
-    handleStop(e){
-        console.log(e);
+    dragStop(e, d){
+        this.setState({
+            x: d.x,
+            y: d.y
+        });
+
+        this.props.dispatch(setWidgetPosDim(this.props.id, d.x, d.y, this.state.width, this.state.height));
+    }
+
+    resizeStop(e, direction, ref, delta, position){
+        this.setState({
+            width: ref.style.width,
+            height: ref.style.height
+        });
+
+        this.props.dispatch(setWidgetPosDim(this.props.id, this.state.x, this.state.y, ref.style.width, ref.style.height));
     }
     
     onMouseOver(){
@@ -48,8 +64,8 @@ class WidgetContainer extends Component{
         
 
         return (
-            <Rnd onResizeStop = {this.handleStop.bind(this)} 
-                 onDragStop = {this.handleStop.bind(this)}
+            <Rnd onResizeStop = {this.resizeStop.bind(this)} 
+                 onDragStop = {this.dragStop.bind(this)}
                  enableResizing = {this.state.editMode ? this.props.enableResizing : disableResizing}
             >
                 <div className={className} 
@@ -63,4 +79,4 @@ class WidgetContainer extends Component{
     }
 }
 
-export default WidgetContainer;
+export default connect()(WidgetContainer);

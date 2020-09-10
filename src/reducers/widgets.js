@@ -8,11 +8,11 @@ const widgets = (state = [], action) => {
           widgetType: action.widgetType
         }
       ]
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? {...todo, completed: !todo.completed}
-          : todo
+    case 'SET_WIDGET_POS_DIM':
+      return state.map(widget =>
+        (widget.id === action.id)
+          ? {...widget, x: action.x, y: action.y, width: action.width, height: action.height}
+          : widget
       )
     default:
       return state
