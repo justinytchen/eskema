@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Button, Modal, Row, Col, Container} from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { addWidget } from '../../actions'
-import { WidgetData, WidgetType } from '../../WidgetType';
+import { WidgetData, WidgetType } from '../../util/WidgetType';
 import { newGuid } from '../../util/ObjectUtils';
 
 class CreateWidgetModal extends Component{

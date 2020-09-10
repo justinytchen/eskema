@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TextFieldWidget from '../widgets/TextFieldWidget';
 import NumberWidget from '../widgets/NumberWidget';
-import { WidgetType } from '../../WidgetType';
+import { WidgetType } from '../../util/WidgetType';
 
 class DashboardCanvas extends Component{
     renderWidgets(){
