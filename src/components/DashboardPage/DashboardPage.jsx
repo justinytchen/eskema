@@ -3,9 +3,8 @@ import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
 import { connect } from 'react-redux'
 
-class DashboardViewer extends Component{
+class DashboardPage extends Component{
     render(){
-        console.log(this.props);
         return (
             <div className="dashboard-viewer">
                 <DashboardNav />
@@ -22,4 +21,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(DashboardViewer)
+)(DashboardPage)

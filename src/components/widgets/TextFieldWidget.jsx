@@ -1,8 +1,7 @@
-import WidgetContainer from './WidgetContainer'
+import WidgetContainer from './WidgetContainer/WidgetContainer'
 import React, {Component} from 'react';
 import Draggable from 'react-draggable';
 import {Form} from 'react-bootstrap';
-import './Widget.css';
 import {Rnd} from 'react-rnd';
 
 class TextFieldWidget extends Component{

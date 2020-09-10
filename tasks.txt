@@ -1,0 +1,11 @@
+High Priority
+Connect to Firebase, be able to save each dashboard
+    widgets: position, size, state
+
+Medium Priority
+Login with Google account, each account has accessed to created dashboards
+More widgets
+Options for existing widgets
+
+Low Priority
+Better UI

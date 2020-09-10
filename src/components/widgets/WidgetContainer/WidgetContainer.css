@@ -1,0 +1,38 @@
+.widget-hover{
+    border: solid red 2px;
+}
+
+.widget-container{
+    padding: 1px;
+}
+
+.widget-container{
+    width: 100%;
+    height:100%;
+}
+
+.widget-container *{
+    width: 100%;
+    height:100%;
+}
+
+.widget-options{
+    width: 5px;
+    height:100%;
+}
+
+.options-button{
+    position: relative;
+    height: 9px;
+    top: -9px;
+    width: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.options-button-text{
+    position: absolute;
+    top: -14px;
+    left: 1px;
+    height: 5px;
+}

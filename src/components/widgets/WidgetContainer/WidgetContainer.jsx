@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Draggable from 'react-draggable';
-import {Form} from 'react-bootstrap';
-import './Widget.css';
+import './WidgetContainer.css';
+import WidgetOptions from './WidgetOptions';
 import {Rnd} from 'react-rnd';
 
 class WidgetContainer extends Component{
@@ -9,7 +8,6 @@ class WidgetContainer extends Component{
         super(props)
         this.state = {
             editMode: true,
-            hover:false
         };
     }
     
@@ -31,15 +29,9 @@ class WidgetContainer extends Component{
     }
     
     onMouseOver(){
-        this.setState({
-            hover: true
-        });
     }
 
     onMouseOut(){
-        this.setState({
-            hover: false
-        });
     }
 
     render(){
@@ -49,19 +41,23 @@ class WidgetContainer extends Component{
             content = this.props.renderEditMode();
             className = "widget-container edit-mode"
         }
-        if(this.state.hover)
+        if(this.state.editMode)
             className += " widget-hover"
+
+        var disableResizing = {top: false, bottom: false, left: false, right: false}
+        
+
         return (
             <Rnd onResizeStop = {this.handleStop.bind(this)} 
                  onDragStop = {this.handleStop.bind(this)}
-                 enableResizing = {this.props.enableResizing}
+                 enableResizing = {this.state.editMode ? this.props.enableResizing : disableResizing}
             >
                 <div className={className} 
-                     onDoubleClick = {this.toggleEditMode.bind(this)} 
-                     onMouseOver={this.onMouseOver.bind(this)} 
-                     onMouseOut={this.onMouseOut.bind(this)}>
+                    onDoubleClick = {this.toggleEditMode.bind(this)} >
                     {content}
                 </div>
+                {this.state.editMode ? <WidgetOptions/> : null}
+                
             </Rnd>
         );
     }

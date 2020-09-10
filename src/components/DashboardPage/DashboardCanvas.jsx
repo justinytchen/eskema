@@ -10,10 +10,6 @@ class DashboardCanvas extends Component{
             <div className="dashboard-canvas">
                 <TextFieldWidget />
                 <NumberWidget />
-                    <TextFieldWidget />
-                    <NumberWidget />
-                        <TextFieldWidget />
-                        <NumberWidget />
             </div>
         );
     }

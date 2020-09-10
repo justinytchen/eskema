@@ -4,4 +4,4 @@ const WidgetType = {
 };
 Object.freeze(WidgetType);
 
-export WidgetType
+export default WidgetType;

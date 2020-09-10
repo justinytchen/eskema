@@ -6,12 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
+import Firebase, {FirebaseContext} from './firebase'
 
 const store = createStore(rootReducer)
 ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
     <Provider store={store}>
       <App />
-    </Provider>,
+    </Provider>
+  </FirebaseContext.Provider>,
   document.getElementById('root')
 );
 

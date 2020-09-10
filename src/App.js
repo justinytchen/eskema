@@ -2,20 +2,26 @@ import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import DashboardViewer from "./components/DashboardViewer/DashboardViewer";
-import LandingPage from "./components/LandingPage";
+import DashboardPage from "./components/DashboardPage/DashboardPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import Overview from "./components/Overview";
+import { withAuthentication } from './session';
 
 class App extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      authUser:null
+    };
+  }
+
   render(){
-    const name = 'John Doe'
-    const isAuthenticated = true
     return (
       <Router>
         <main>
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/board/:id"  component={DashboardViewer} />
+            <Route path="/board/:id"  component={DashboardPage} />
             <Route path="/overview"  component={Overview} />
             <Route render={() => <Redirect to={{pathname: "/"}} />} />
             
@@ -26,4 +32,4 @@ class App extends Component{
   }
 }
 
-export default App;
+export default withAuthentication(App);
