@@ -55,6 +55,10 @@ class SigninModalBase extends Component{
 
         event.preventDefault();
     }
+
+    googleSignin(event){
+      this.props.firebase.doSigninWithGoogleAuth();
+    } 
     
     render(){
       const {
@@ -95,6 +99,9 @@ class SigninModalBase extends Component{
                   </Form>
               </Modal.Body>
               <Modal.Footer>
+                <Button variant="primary" onClick={(e) => this.googleSignin(e)}>
+                  Sign in with Google
+                </Button>
                 <Button variant="secondary" onClick={this.handleClose.bind(this)}>
                   Cancel
                 </Button>
