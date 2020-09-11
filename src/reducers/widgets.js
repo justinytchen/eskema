@@ -46,6 +46,8 @@ const widgets = (state = [], action) => {
             )
         case 'DELETE_WIDGET':
             return state.filter(widget => widget.id !== action.id);
+        case 'DELETE_SELECTED_WIDGETS':
+            return state.filter(widget => widget.selected == false);
         case 'UNSELECT_ALL':
             return state.map(widget => { return { ...widget, selected: false } })
         default:

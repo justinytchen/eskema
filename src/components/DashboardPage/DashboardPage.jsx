@@ -3,7 +3,7 @@ import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
 import { connect } from 'react-redux'
 import './DashboardPage.css';
-import { unselectAll } from '../../actions';
+import { deleteSelectedWidgets, unselectAll } from '../../actions';
 import keydown, { Keys } from 'react-keydown';
 
 class DashboardPage extends Component {
@@ -27,6 +27,11 @@ class DashboardPage extends Component {
     @keydown( 'ctrl+c' ) // or specify `which` code directly, in this case 13
     onCtrlC() {
         console.log("control c");
+    }
+
+    @keydown( 'backspace' ) // or specify `which` code directly, in this case 13
+    onBackspace() {
+        this.props.dispatch(deleteSelectedWidgets());
     }
 
     render() {

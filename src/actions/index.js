@@ -51,4 +51,8 @@ export const deleteWidget = (id) => ({
     type: 'DELETE_WIDGET',
     id:id
 })
+
+export const deleteSelectedWidgets = () => ({
+  type: 'DELETE_SELECTED_WIDGETS'
+})
   
