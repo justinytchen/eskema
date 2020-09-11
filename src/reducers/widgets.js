@@ -31,6 +31,12 @@ const widgets = (state = [], action) => {
           ? {...widget, x: widget.x + action.dx, y: widget.y + action.dy}
           : widget
       )
+    case 'MOVE_WIDGET_TO':
+      return state.map(widget =>
+        (widget.id === action.id)
+          ? {...widget, x: action.x, y: action.y}
+          : widget
+      )
     default:
       return state
   }

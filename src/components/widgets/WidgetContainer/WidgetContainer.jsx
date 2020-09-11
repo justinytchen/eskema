@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './WidgetContainer.css';
 import WidgetOptions from './WidgetOptions';
 import {Rnd} from 'react-rnd';
-import { setWidgetPosDim, moveSelected, setSelected } from '../../../actions';
+import { setWidgetPosDim, moveSelected, setSelected, moveWidgetTo } from '../../../actions';
 import { connect } from 'react-redux';
 
 class WidgetContainer extends Component{
@@ -34,6 +34,8 @@ class WidgetContainer extends Component{
     onDrag(e, d){
         if(this.props.widget.selected)
             this.props.dispatch(moveSelected(d.deltaX, d.deltaY));
+        else
+            this.props.dispatch(moveWidgetTo(this.props.widget.id, d.x, d.y));
     }
 
     resizeStop(e, direction, ref, delta, position){

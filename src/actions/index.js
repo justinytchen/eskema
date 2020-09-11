@@ -31,6 +31,13 @@ export const moveSelected = (dx, dy) => ({
   dy:dy,
 })
 
+export const moveWidgetTo = (id, x, y) => ({
+  type: 'MOVE_WIDGET_TO',
+  id:id,
+  x:x,
+  y:y,
+})
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
