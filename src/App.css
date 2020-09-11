@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  height:100vh
+}
+
+#root{
+  height:100%
+}
+
+main{
+  height:100%
+}

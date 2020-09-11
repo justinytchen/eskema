@@ -36,3 +36,7 @@
     left: 1px;
     height: 5px;
 }
+
+.widget-selected{
+    border: dotted deepskyblue 2px;
+}

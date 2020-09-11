@@ -30,7 +30,7 @@ class DashboardCanvas extends Component{
 
     render(){
         return (
-            <div className="dashboard-canvas">
+            <div className="dashboard-canvas" >
                 {this.renderWidgets()}
             </div>
         );

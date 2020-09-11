@@ -20,8 +20,6 @@ class WidgetContainer extends Component{
         else if(this.props.toEditMode){
             this.props.toEditMode();
         }
-
-        this.props.dispatch(setSelected(this.props.widget.id, !this.state.editMode));
         
         this.setState({
             editMode: !this.state.editMode
@@ -46,16 +44,20 @@ class WidgetContainer extends Component{
 
         this.props.dispatch(setWidgetPosDim(this.props.widget.id, this.state.x, this.state.y, ref.style.width, ref.style.height));
     }
-    
-    onMouseOver(){
-    }
 
-    onMouseOut(){
+    onMouseClick(e){
+        if(e.shiftKey)
+            this.props.dispatch(setSelected(this.props.widget.id, !this.props.widget.selected));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(this.props.widget.x && this.props.widget.y && this.rnd && this.props.widget.selected)
-            this.rnd.updatePosition({ x: this.props.widget.x, y: this.props.widget.y });
+        var changedPos = prevProps.widget.x !== this.props.widget.x || prevProps.widget.y !== this.props.widget.y
+        if(prevProps.widget.ref !== this.props.widget.ref){
+            return;
+        }
+        if(prevProps.widget.selected === this.props.widget.selected && changedPos)
+            if(this.props.widget.x && this.props.widget.y && this.rnd && this.props.widget.selected)
+                this.rnd.updatePosition({ x: this.props.widget.x, y: this.props.widget.y });
     }
 
     render(){
@@ -67,6 +69,9 @@ class WidgetContainer extends Component{
         }
         if(this.state.editMode)
             className += " widget-hover"
+
+        if(this.props.widget.selected)
+            className += " widget-selected"
 
         var disableResizing = {top: false, bottom: false, left: false, right: false}
         var defaults = {
@@ -80,6 +85,7 @@ class WidgetContainer extends Component{
             <Rnd onResizeStop = {this.resizeStop.bind(this)} 
                  onDragStop = {this.dragStop.bind(this)}
                  onDrag = {this.onDrag.bind(this)}
+                 onClick = {this.onMouseClick.bind(this)}
                  enableResizing = {this.state.editMode ? this.props.enableResizing : disableResizing}
                  ref={c => { this.rnd = c; }}
                  default={defaults}
