@@ -76,7 +76,7 @@ class SigninModalBase extends Component{
 
             <Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
               <Modal.Header closeButton>
-                <Modal.Title>Sign up</Modal.Title>
+                <Modal.Title>Sign in</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 { error ? 
