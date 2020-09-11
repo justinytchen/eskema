@@ -15,28 +15,14 @@ class DashboardPage extends Component {
         };
     }
 
-    onClick(e) {
+    onMouseDown(e) {
         if (!this.state.dragging && e.target.className === "dashboard-viewer")
             this.props.dispatch(unselectAll());
-        this.setState({
-            mouseDown: false,
-            dragging: false
-        });
-    }
-
-    onMouseDown() {
         this.setState({
             mouseDown: true
         });
     }
 
-    onMouseMove() {
-        if (this.state.mouseDown) {
-            this.setState({
-                dragging: true
-            });
-        }
-    }
 
     @keydown( 'ctrl+c' ) // or specify `which` code directly, in this case 13
     onCtrlC() {
@@ -46,9 +32,7 @@ class DashboardPage extends Component {
     render() {
         return (
             <div className="dashboard-viewer"
-                onClick={this.onClick.bind(this)}
-                onMouseDown={this.onMouseDown.bind(this)}
-                onMouseMove={this.onMouseMove.bind(this)}>
+                onMouseDown={this.onMouseDown.bind(this)}>
                 <DashboardCanvas widgets={this.props.widgets} />
                 <DashboardNav widgets={this.props.widgets}/>
             </div>
