@@ -57,6 +57,7 @@ class SigninModalBase extends Component{
     }
 
     googleSignin(event){
+      console.log(this.props.firebase);
       this.props.firebase.doSigninWithGoogleAuth();
     } 
     

@@ -2,37 +2,15 @@ import app from "firebase/app";
 import "firebase/auth";
 import firebase from "firebase";
 import firebaseConfig from "./firebaseConfig";
+import FirebaseAuthHandler from "./firebaseAuthHandler";
 
 class Firebase{
     constructor() {
         app.initializeApp(firebaseConfig);
-        this.auth = app.auth();
         this.db = firebase.firestore();
+        this.auth = app.auth();
         this.provider = new firebase.auth.GoogleAuthProvider();
-    }
-
-    doCreateUserWithEmailAndPassword(email, password){
-        return this.auth.createUserWithEmailAndPassword(email, password);
-    }
-
-    doSignInWithEmailAndPassword(email, password){
-        return this.auth.signInWithEmailAndPassword(email, password);
-    }
-
-    doSigninWithGoogleAuth(){
-        this.auth.signInWithPopup(this.provider);
-    }
-
-    doSignOut(){
-        return this.auth.signOut();
-    }
-
-    doPasswordReset(email){
-        return this.auth.sendPasswordResetEmail(email);
-    }
- 
-    doPasswordUpdate(password){
-        return this.auth.currentUser.updatePassword(password);
+        this.authHandler = new FirebaseAuthHandler(this.auth);
     }
 
     addUser(name, email, uid){

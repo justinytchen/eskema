@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import {newGuid} from '../../util/ObjectUtils';
-import SignupModal from './SignupModal';
-import SigninModal from './SigninModal';
+import { withFirebase } from '../../firebase';
 
-class LandingPageNonAuth extends Component{
+class LandingPageNonAuthBase extends Component{
     createNewBoard(){
         const guid = newGuid();
         this.props.history.push("/board/" + guid);
@@ -19,10 +18,9 @@ class LandingPageNonAuth extends Component{
                         <Button variant="primary" onClick = {this.createNewBoard.bind(this)}>New Board</Button>
                     </Col> 
                     <Col lg={3}>
-                        <SignupModal/>
                     </Col> 
                     <Col lg={3}>
-                        <SigninModal/>
+                        <Button onClick={() => console.log(this.props.firebase.authHandler.doSigninWithGoogleAuth())}>Register/Login</Button>
                     </Col> 
                 </Row>    
                 <Row>
@@ -33,4 +31,5 @@ class LandingPageNonAuth extends Component{
     }
 }
 
+const LandingPageNonAuth = withFirebase(LandingPageNonAuthBase);
 export default LandingPageNonAuth;
