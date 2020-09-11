@@ -4,6 +4,7 @@ import DashboardNav from './DashboardNav';
 import { connect } from 'react-redux'
 import './DashboardPage.css';
 import { unselectAll } from '../../actions';
+import keydown, { Keys } from 'react-keydown';
 
 class DashboardPage extends Component {
     constructor(props) {
@@ -37,6 +38,10 @@ class DashboardPage extends Component {
         }
     }
 
+    @keydown( 'ctrl+c' ) // or specify `which` code directly, in this case 13
+    onCtrlC() {
+        console.log("control c");
+    }
 
     render() {
         return (
@@ -54,7 +59,6 @@ class DashboardPage extends Component {
 const mapStateToProps = state => ({
     widgets: state.widgets
 })
-
 
 export default connect(
     mapStateToProps

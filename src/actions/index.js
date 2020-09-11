@@ -46,3 +46,9 @@ export const moveWidgetTo = (id, x, y) => ({
 export const unselectAll = () => ({
   type: 'UNSELECT_ALL'
 })
+
+export const deleteWidget = (id) => ({
+    type: 'DELETE_WIDGET',
+    id:id
+})
+  
