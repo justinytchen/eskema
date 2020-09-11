@@ -19,6 +19,18 @@ export const setWidgetPosDim = (id, x, y, width, height) => ({
   height:height
 })
 
+export const setSelected = (id, selected) => ({
+  type: 'SET_SELECTED',
+  id: id,
+  selected: selected
+})
+
+export const moveSelected = (dx, dy) => ({
+  type: 'MOVE_SELECTED',
+  dx:dx,
+  dy:dy,
+})
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',

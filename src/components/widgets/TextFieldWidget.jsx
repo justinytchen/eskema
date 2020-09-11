@@ -9,10 +9,9 @@ class TextFieldWidget extends Component{
         super(props);
         this.state = {
             editMode: true,
-            text:"zzzzz"
+            text:""
         };
         this.textInput = React.createRef();
-        this.containerRef = React.createRef();
     }
 
 
@@ -21,7 +20,6 @@ class TextFieldWidget extends Component{
           this.setState({
               text: this.textInput.current.value
           }); 
-          this.containerRef.current.toggleEditMode();
       } 
     }
     
@@ -52,12 +50,11 @@ class TextFieldWidget extends Component{
     render(){
         return (
             <WidgetContainer 
-                ref = {this.containerRef}
                 toDisplayMode = {() => this.toDisplayMode()}
                 renderEditMode = {() => this.renderEditMode()}
                 renderDisplayMode = {() => this.renderDisplayMode()}
                 enableResizing = {{top: false, bottom: false, left: true, right: true}}
-                id = {this.props.id}
+                widget = {this.props.widget}
             />
         );
     }
