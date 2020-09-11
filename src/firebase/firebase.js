@@ -8,9 +8,6 @@ class Firebase{
         app.initializeApp(firebaseConfig);
         this.auth = app.auth();
         this.db = firebase.firestore();
-        this.db.settings({
-            timestampsInSnapshots: true
-        });
     }
 
     doCreateUserWithEmailAndPassword(email, password){
