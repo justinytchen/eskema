@@ -2,24 +2,29 @@ import React, {Component} from 'react';
 import './WidgetContainer.css';
 import WidgetOptions from './WidgetOptions';
 import {Rnd} from 'react-rnd';
-import { setWidgetPosDim, moveSelected, setSelected, moveWidgetTo } from '../../../actions';
+import { setWidgetPosDim, moveSelected, setSelected, moveWidgetTo, setWidgetState } from '../../../actions';
 import { connect } from 'react-redux';
 
 class WidgetContainer extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
+
         this.state = {
             editMode: true,
         };
     }
     
     toggleEditMode(){
-        if(this.state.editMode && this.props.toDisplayMode){
-            this.props.toDisplayMode();
+        if(this.state.editMode){
+            this.props.dispatch(setWidgetState(this.props.widget.id, this.props.getCurrentState()));
+            if(this.props.toDisplayMode)
+                this.props.toDisplayMode();
         }
         else if(this.props.toEditMode){
             this.props.toEditMode();
         }
+
         
         this.setState({
             editMode: !this.state.editMode

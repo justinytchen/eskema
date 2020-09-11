@@ -45,7 +45,7 @@ class DashboardPage extends Component {
                 onMouseDown={this.onMouseDown.bind(this)}
                 onMouseMove={this.onMouseMove.bind(this)}>
                 <DashboardCanvas widgets={this.props.widgets} />
-                <DashboardNav />
+                <DashboardNav widgets={this.props.widgets}/>
             </div>
         );
     }

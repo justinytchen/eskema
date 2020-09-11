@@ -1,34 +1,21 @@
 import WidgetContainer from './WidgetContainer/WidgetContainer'
 import React, {Component} from 'react';
 
-class TextWidget extends Component{
+class NumberWidget extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            value:0
-        };
-        this.textInput = React.createRef();
-    }
-
-
-    handleKeyPress(target) {
-      if(target.charCode==13){
-          this.setState({
-              text: this.textInput.current.value
-          }); 
-      } 
+        this.numInput = React.createRef();
     }
     
-    renderEditMode(){
+    renderEditMode(changeHandler){
         return (
-            <div className="number-widget">
+            <div className={"number-widget" + this.props.widget.state}>
                 <input type="number" 
+                ref={this.numInput}
                 autoFocus 
                 autoComplete="none" 
-                defaultValue = {this.state.value} 
-                ref={this.textInput} 
-                size="1"
-                onKeyPress={this.handleKeyPress.bind(this)}/>
+                defaultValue = {(this.props.widget.state) ? this.props.widget.state: 0}
+                size="1"/>
             </div>
         );
     }
@@ -36,28 +23,27 @@ class TextWidget extends Component{
     renderDisplayMode(){
         return (
             <div className="number-widget">
-                {this.state.text}
+                {this.props.widget.state}
             </div>
         );
     }
-    
-    toDisplayMode(){
-        this.setState({
-            text: this.textInput.current.value
-        }); 
+
+    getCurrentState(){
+        return this.numInput.current.value;
     }
 
     render(){
         return (
             <WidgetContainer 
-                toDisplayMode = {() => this.toDisplayMode()}
-                renderEditMode = {() => this.renderEditMode()}
+                renderEditMode = {this.renderEditMode.bind(this)}
                 renderDisplayMode = {() => this.renderDisplayMode()}
                 enableResizing = {{top: false, bottom: false, left: true, right: true}}
+                getCurrentState = {() => this.getCurrentState()}
+                defaultState = {0}
                 widget = {this.props.widget}
             />
         );
     }
 }
 
-export default TextWidget;
+export default NumberWidget;

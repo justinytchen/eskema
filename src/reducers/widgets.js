@@ -8,9 +8,10 @@ const widgets = (state = [], action) => {
                     widgetType: action.widgetType,
                     selected: false,
                     x: 0,
-                    y: 0,
+                    y: 50,
                     width: "auto",
-                    height: "auto"
+                    height: "auto",
+                    state: null
                 }
             ]
         case 'SET_WIDGET_POS_DIM':
@@ -23,6 +24,12 @@ const widgets = (state = [], action) => {
             return state.map(widget =>
                 (widget.id === action.id)
                     ? { ...widget, selected: action.selected }
+                    : widget
+            )
+        case 'SET_WIDGET_STATE':
+            return state.map(widget =>
+                (widget.id === action.id)
+                    ? { ...widget, state: action.state }
                     : widget
             )
         case 'MOVE_SELECTED':

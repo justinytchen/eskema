@@ -7,28 +7,15 @@ import {Rnd} from 'react-rnd';
 class TextFieldWidget extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            editMode: true,
-            text:""
-        };
         this.textInput = React.createRef();
     }
 
-
-    handleKeyPress(target) {
-        if(target.charCode==13){
-          this.setState({
-              text: this.textInput.current.value
-          }); 
-      } 
-    }
-    
     renderEditMode(){
         return (
             <div className="text-widget">
                 <Form.Control autoFocus 
                 autoComplete="none" 
-                defaultValue = {this.state.text} ref={this.textInput} onKeyPress={this.handleKeyPress.bind(this)}/>
+                defaultValue = {this.props.widget.state} ref={this.textInput}/>
             </div>
         );
     }
@@ -36,24 +23,23 @@ class TextFieldWidget extends Component{
     renderDisplayMode(){
         return (
             <div className="text-widget">
-                {this.state.text}
+                {this.props.widget.state}
             </div>
         );
     }
     
-    toDisplayMode(){
-        this.setState({
-            text: this.textInput.current.value
-        }); 
+    getCurrentState(){
+        return this.textInput.current.value;
     }
 
     render(){
         return (
             <WidgetContainer 
-                toDisplayMode = {() => this.toDisplayMode()}
                 renderEditMode = {() => this.renderEditMode()}
                 renderDisplayMode = {() => this.renderDisplayMode()}
                 enableResizing = {{top: false, bottom: false, left: true, right: true}}
+                getCurrentState = {() => this.getCurrentState()}
+                defaultState = {""}
                 widget = {this.props.widget}
             />
         );

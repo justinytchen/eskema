@@ -1,4 +1,3 @@
-let nextTodoId = 0
 export const addWidget = (guid, widgetType) => ({
     id: guid,
     type: 'ADD_WIDGET',
@@ -23,6 +22,12 @@ export const setSelected = (id, selected) => ({
   type: 'SET_SELECTED',
   id: id,
   selected: selected
+})
+
+export const setWidgetState = (id, state) => ({
+    type: 'SET_WIDGET_STATE',
+    id: id,
+    state: state
 })
 
 export const moveSelected = (dx, dy) => ({
