@@ -29,6 +29,12 @@ export const setSelected = (id, selected) => ({
     selected: selected
 })
 
+export const setWidgetEditMode = (id, editMode) => ({
+    type: 'SET_EDIT_MODE',
+    id: id,
+    editMode: editMode
+})
+
 export const setWidgetState = (id, state) => ({
     type: 'SET_WIDGET_STATE',
     id: id,

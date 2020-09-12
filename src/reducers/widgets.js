@@ -11,6 +11,7 @@ const widgets = (state = [], action) => {
                     y: 50,
                     width: "auto",
                     height: "auto",
+                    editMode: true,
                     state: null
                 }
             ]
@@ -25,7 +26,8 @@ const widgets = (state = [], action) => {
                     y: action.widget.y,
                     width: action.widget.width,
                     height: action.widget.height,
-                    state: action.widget.state
+                    state: action.widget.state,
+                    editMode: action.widget.editMode
                 }
             ]
         case 'SET_WIDGET_POS_DIM':
@@ -38,6 +40,12 @@ const widgets = (state = [], action) => {
             return state.map(widget =>
                 (widget.id === action.id)
                     ? { ...widget, selected: action.selected }
+                    : widget
+            )
+        case 'SET_EDIT_MODE':
+            return state.map(widget =>
+                (widget.id === action.id)
+                    ? { ...widget, editMode: action.editMode }
                     : widget
             )
         case 'SET_WIDGET_STATE':

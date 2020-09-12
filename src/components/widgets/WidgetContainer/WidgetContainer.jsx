@@ -2,21 +2,17 @@ import React, {Component} from 'react';
 import './WidgetContainer.css';
 import WidgetOptions from './WidgetOptions';
 import {Rnd} from 'react-rnd';
-import { setWidgetPosDim, moveSelected, setSelected, moveWidgetTo, setWidgetState } from '../../../actions';
+import { setWidgetPosDim, moveSelected, setSelected, moveWidgetTo, setWidgetState, setWidgetEditMode } from '../../../actions';
 import { connect } from 'react-redux';
 
 class WidgetContainer extends Component{
     constructor(props){
         super(props);
         this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
-
-        this.state = {
-            editMode: true,
-        };
     }
     
     toggleEditMode(){
-        if(this.state.editMode){
+        if(this.props.widget.editMode){
             this.props.dispatch(setWidgetState(this.props.widget.id, this.props.getCurrentState()));
             if(this.props.toDisplayMode)
                 this.props.toDisplayMode();
@@ -25,10 +21,7 @@ class WidgetContainer extends Component{
             this.props.toEditMode();
         }
 
-        
-        this.setState({
-            editMode: !this.state.editMode
-        });
+        this.props.dispatch(setWidgetEditMode(this.props.widget.id, !this.props.widget.editMode));
     }
 
     dragStop(e, d){
@@ -72,11 +65,11 @@ class WidgetContainer extends Component{
     render(){
         var content = this.props.renderDisplayMode();
         var className = "widget-container display-mode"
-        if(this.state.editMode){
+        if(this.props.widget.editMode){
             content = this.props.renderEditMode(this.stateChanged.bind(this));
             className = "widget-container edit-mode"
         }
-        if(this.state.editMode)
+        if(this.props.widget.editMode)
             className += " widget-hover"
 
         if(this.props.widget.selected)
@@ -95,7 +88,7 @@ class WidgetContainer extends Component{
                  onDragStop = {this.dragStop.bind(this)}
                  onDrag = {this.onDrag.bind(this)}
                  onClick = {this.onMouseClick.bind(this)}
-                 enableResizing = {this.state.editMode ? this.props.enableResizing : disableResizing}
+                 enableResizing = {this.props.widget.editMode ? this.props.enableResizing : disableResizing}
                  ref={c => { this.rnd = c; }}
                  default={defaults}
             >
@@ -103,7 +96,7 @@ class WidgetContainer extends Component{
                     onDoubleClick = {this.toggleEditMode.bind(this)} >
                     {content}
                 </div>
-                {this.state.editMode ? <WidgetOptions/> : null}
+                {this.props.widget.editMode ? <WidgetOptions/> : null}
                 
             </Rnd>
         );
