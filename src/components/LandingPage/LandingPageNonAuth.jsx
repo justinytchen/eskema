@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { newGuid } from '../../util/ObjectUtils';
 import { withFirebase } from '../../firebase';
+import NewBoardButton from './NewBoardButton';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
@@ -27,7 +28,7 @@ class LandingPageNonAuthBase extends Component {
                 <Row>
                     <Col lg={3}>z</Col>
                     <Col lg={3}>
-                        <Button variant="primary" onClick={this.createNewBoard.bind(this)}>New Board</Button>
+                        <NewBoardButton />
                     </Col>
                     <Col lg={3}>
                     </Col>

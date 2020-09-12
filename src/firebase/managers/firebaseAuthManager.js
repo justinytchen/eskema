@@ -1,5 +1,6 @@
 import "firebase/auth";
 import firebase from "firebase";
+import User from "../../models/User";
 
 class FirebaseAuthManager{
     constructor(auth){
@@ -29,6 +30,13 @@ class FirebaseAuthManager{
  
     doPasswordUpdate(password){
         return this.auth.currentUser.updatePassword(password);
+    }
+
+    getCurrentUser(){
+        const currentUser = this.auth.currentUser;
+        if(currentUser)
+            return new User(currentUser.displayName, currentUser.email, currentUser.uid);
+        return new User(null, null, null);
     }
 }
 

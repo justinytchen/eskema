@@ -35,11 +35,12 @@ class DashboardPage extends Component {
     }
 
     render() {
+        const boardID = this.props.match.params.id;
         return (
             <div className="dashboard-viewer"
                 onMouseDown={this.onMouseDown.bind(this)}>
                 <DashboardCanvas widgets={this.props.widgets} />
-                <DashboardNav widgets={this.props.widgets}/>
+                <DashboardNav widgets={this.props.widgets} boardID = {boardID}/>
             </div>
         );
     }

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import CreateWidgetModal from './CreateWidgetModal';
 import {Row, Col, Container, Button} from 'react-bootstrap';
+import {withFirebase} from "../../firebase";
 
 class DashboardNav extends Component{
     onSave(){
-        console.log(this.props.widgets);
+        this.props.firebase.boardMgr.saveWidgetsToBoard(this.props.boardID, this.props.widgets);
     }
 
     render(){
@@ -25,4 +26,4 @@ class DashboardNav extends Component{
     }
 }
 
-export default DashboardNav;
+export default withFirebase(DashboardNav);
