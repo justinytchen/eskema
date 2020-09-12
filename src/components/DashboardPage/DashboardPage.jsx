@@ -19,7 +19,6 @@ class DashboardPage extends Component {
     }
 
     boardDataLoaded(data){
-        console.log(data);
         const widgets = data.widgets;
         for(var i = 0; i < widgets.length; i+=1){
             this.props.dispatch(addSavedWidget(widgets[i]));

@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 class WidgetContainer extends Component{
     constructor(props){
         super(props);
-        this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
+        if(!this.props.widget.state)
+            this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
     }
     
     toggleEditMode(){

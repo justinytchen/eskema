@@ -9,10 +9,11 @@ class DashboardCanvas extends Component{
             return;
         
         var contents = [];
-
-        for(var i = 0; i < this.props.widgets.length; i++){
-            var widget = this.props.widgets[i];
-            contents.push(this.renderWidget(widget));
+        if(this.props.widgets){
+            for(var i = 0; i < this.props.widgets.length; i++){
+                var widget = this.props.widgets[i];
+                contents.push(this.renderWidget(widget));
+            }
         }
         return contents;
     }
