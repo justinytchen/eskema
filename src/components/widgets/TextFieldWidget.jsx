@@ -1,8 +1,6 @@
 import WidgetContainer from './WidgetContainer/WidgetContainer'
 import React, {Component} from 'react';
-import Draggable from 'react-draggable';
 import {Form} from 'react-bootstrap';
-import {Rnd} from 'react-rnd';
 
 class TextFieldWidget extends Component{
     constructor(props){
@@ -10,12 +8,13 @@ class TextFieldWidget extends Component{
         this.textInput = React.createRef();
     }
 
-    renderEditMode(){
+    renderEditMode(changeHandler){
         return (
             <div className="text-widget">
                 <Form.Control autoFocus 
                 autoComplete="none" 
-                defaultValue = {this.props.widget.state} ref={this.textInput}/>
+                defaultValue = {this.props.widget.state} ref={this.textInput}
+                onChange = {(e) => changeHandler(e.target.value)}/>
             </div>
         );
     }
@@ -35,7 +34,7 @@ class TextFieldWidget extends Component{
     render(){
         return (
             <WidgetContainer 
-                renderEditMode = {() => this.renderEditMode()}
+                renderEditMode = {this.renderEditMode.bind(this)}
                 renderDisplayMode = {() => this.renderDisplayMode()}
                 enableResizing = {{top: false, bottom: false, left: true, right: true}}
                 getCurrentState = {() => this.getCurrentState()}

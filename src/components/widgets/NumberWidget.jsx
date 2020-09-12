@@ -15,6 +15,7 @@ class NumberWidget extends Component{
                 autoFocus 
                 autoComplete="none" 
                 defaultValue = {(this.props.widget.state) ? this.props.widget.state: 0}
+                onChange = {(e) => changeHandler(e.target.value)}
                 size="1"/>
             </div>
         );

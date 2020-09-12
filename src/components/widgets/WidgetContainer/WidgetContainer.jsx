@@ -65,11 +65,15 @@ class WidgetContainer extends Component{
                 this.rnd.updatePosition({ x: this.props.widget.x, y: this.props.widget.y });
     }
 
+    stateChanged(state){
+        this.props.dispatch(setWidgetState(this.props.widget.id, state));
+    }
+
     render(){
         var content = this.props.renderDisplayMode();
         var className = "widget-container display-mode"
         if(this.state.editMode){
-            content = this.props.renderEditMode();
+            content = this.props.renderEditMode(this.stateChanged.bind(this));
             className = "widget-container edit-mode"
         }
         if(this.state.editMode)
