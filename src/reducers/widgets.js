@@ -1,6 +1,6 @@
 const widgets = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_WIDGET':
+        case 'CREATE_WIDGET':
             return [
                 ...state,
                 {
@@ -12,6 +12,20 @@ const widgets = (state = [], action) => {
                     width: "auto",
                     height: "auto",
                     state: null
+                }
+            ]
+        case 'ADD_SAVED_WIDGET':
+            return [
+                ...state,
+                {
+                    id: action.widget.id,
+                    widgetType: action.widget.widgetType,
+                    selected: action.widget.selected,
+                    x: action.widget.x,
+                    y: action.widget.y,
+                    width: action.widget.width,
+                    height: action.widget.height,
+                    state: action.widget.state
                 }
             ]
         case 'SET_WIDGET_POS_DIM':

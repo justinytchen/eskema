@@ -1,27 +1,32 @@
-export const addWidget = (guid, widgetType) => ({
+export const createWidget = (guid, widgetType) => ({
     id: guid,
-    type: 'ADD_WIDGET',
+    type: 'CREATE_WIDGET',
     widgetType: widgetType,
 })
 
+export const addSavedWidget = (widget) => ({
+    type: 'ADD_SAVED_WIDGET',
+    widget: widget
+})
+
 export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
+    type: 'SET_VISIBILITY_FILTER',
+    filter
 })
 
 export const setWidgetPosDim = (id, x, y, width, height) => ({
-  id:id,
-  type: 'SET_WIDGET_POS_DIM',
-  x:x,
-  y:y,
-  width:width,
-  height:height
+    id: id,
+    type: 'SET_WIDGET_POS_DIM',
+    x: x,
+    y: y,
+    width: width,
+    height: height
 })
 
 export const setSelected = (id, selected) => ({
-  type: 'SET_SELECTED',
-  id: id,
-  selected: selected
+    type: 'SET_SELECTED',
+    id: id,
+    selected: selected
 })
 
 export const setWidgetState = (id, state) => ({
@@ -31,28 +36,27 @@ export const setWidgetState = (id, state) => ({
 })
 
 export const moveSelected = (dx, dy) => ({
-  type: 'MOVE_SELECTED',
-  dx:dx,
-  dy:dy,
+    type: 'MOVE_SELECTED',
+    dx: dx,
+    dy: dy,
 })
 
 export const moveWidgetTo = (id, x, y) => ({
-  type: 'MOVE_WIDGET_TO',
-  id:id,
-  x:x,
-  y:y,
+    type: 'MOVE_WIDGET_TO',
+    id: id,
+    x: x,
+    y: y,
 })
 
 export const unselectAll = () => ({
-  type: 'UNSELECT_ALL'
+    type: 'UNSELECT_ALL'
 })
 
 export const deleteWidget = (id) => ({
     type: 'DELETE_WIDGET',
-    id:id
+    id: id
 })
 
 export const deleteSelectedWidgets = () => ({
-  type: 'DELETE_SELECTED_WIDGETS'
+    type: 'DELETE_SELECTED_WIDGETS'
 })
-  

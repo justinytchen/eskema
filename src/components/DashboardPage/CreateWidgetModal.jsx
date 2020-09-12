@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Modal, Row, Col, Container} from 'react-bootstrap';
 import { connect } from 'react-redux'
-import { addWidget, setWidgetPosDim } from '../../actions'
+import { createWidget, setWidgetPosDim } from '../../actions'
 import { WidgetData, WidgetType } from '../../util/WidgetType';
 import { newGuid } from '../../util/ObjectUtils';
 
@@ -38,7 +38,7 @@ class CreateWidgetModal extends Component{
     }
 
     selectedWidget(widgetType){
-      this.props.dispatch(addWidget(newGuid(), widgetType));
+      this.props.dispatch(createWidget(newGuid(), widgetType));
       this.handleClose();
     }
 

@@ -3,8 +3,9 @@ import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
 import { connect } from 'react-redux'
 import './DashboardPage.css';
-import { deleteSelectedWidgets, unselectAll } from '../../actions';
+import { deleteSelectedWidgets, unselectAll, addSavedWidget } from '../../actions';
 import keydown, { Keys } from 'react-keydown';
+import { withFirebase } from '../../firebase';
 
 class DashboardPage extends Component {
     constructor(props) {
@@ -13,6 +14,16 @@ class DashboardPage extends Component {
             mouseDown: false,
             dragging: false
         };
+        const boardID = this.props.match.params.id;
+        this.props.firebase.boardMgr.getBoardData(boardID, (data) => this.boardDataLoaded(data));
+    }
+
+    boardDataLoaded(data){
+        console.log(data);
+        const widgets = data.widgets;
+        for(var i = 0; i < widgets.length; i+=1){
+            this.props.dispatch(addSavedWidget(widgets[i]));
+        }
     }
 
     onMouseDown(e) {
@@ -52,4 +63,4 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps
-)(DashboardPage)
+)(withFirebase(DashboardPage));
