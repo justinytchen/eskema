@@ -10,7 +10,7 @@ class LandingPageAuthBase extends Component{
     }
 
     signout(){
-        this.props.firebase.authHandler
+        this.props.firebase.authMgr
             .doSignOut()
             .catch(error => {
             this.setState({ error });

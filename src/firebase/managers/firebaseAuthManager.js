@@ -1,7 +1,7 @@
 import "firebase/auth";
 import firebase from "firebase";
 
-class FirebaseAuthHandler{
+class FirebaseAuthManager{
     constructor(auth){
         this.provider = new firebase.auth.GoogleAuthProvider();
         this.auth = auth;
@@ -20,7 +20,7 @@ class FirebaseAuthHandler{
     }
 
     doSigninWithGoogleAuth(){
-        return this.auth.signInWithPopup(this.provider)
+        return this.auth.signInWithPopup(this.provider);
     }
 
     doPasswordReset(email){
@@ -32,4 +32,4 @@ class FirebaseAuthHandler{
     }
 }
 
-export default FirebaseAuthHandler;
+export default FirebaseAuthManager;
