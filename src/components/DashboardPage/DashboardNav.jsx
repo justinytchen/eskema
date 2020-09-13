@@ -17,8 +17,8 @@ class DashboardNav extends Component{
                     <Col>
                         <CreateWidgetModal />
                     </Col>
-                    <Col>some text</Col>
-                    <Col>zzz</Col>
+                    <Col></Col>
+                    <Col></Col>
                     <Col>
                         <Button onClick={this.onSave.bind(this)}>Save</Button>
                     </Col>
