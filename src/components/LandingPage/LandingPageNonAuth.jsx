@@ -5,6 +5,7 @@ import { withFirebase } from '../../firebase';
 import NewBoardButton from './NewBoardButton';
 import DemoCarousel from './DemoCarousel';
 import bgImage from '../../images/whiteboard2.jpg';
+import logo from '../../images/logo.png';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
@@ -27,16 +28,16 @@ class LandingPageNonAuthBase extends Component {
     render() {
         return (
             <div className="landing-container">
-                <Navbar className = "landing-unauth-navbar">
+                <Navbar className = "landing-unauth-navbar navbar-dark">
                     <Navbar.Brand href="/">
                         <img
                             alt=""
-                            src="/logo.svg"
+                            src={"./logo.png"}
                             width="30"
                             height="30"
                             className="d-inline-block align-top"
                         />{' '}
-                        Some Name
+                        eskema
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                     </Nav>
@@ -52,7 +53,7 @@ class LandingPageNonAuthBase extends Component {
                             <Col xs lg="2">
                             </Col>
                             <Col md="auto" className = "jumbotron-popup"><Row>
-                                    <h1>Welcome to [Insert Name]!</h1>
+                                    <h1>Welcome to eskema!</h1>
                                 </Row>
                                 <Row>
                                     <p>

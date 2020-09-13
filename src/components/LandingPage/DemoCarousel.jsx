@@ -12,9 +12,9 @@ class DemoCarousel extends Component {
         this.state = {
             currentDemo: "demo1"
         };
-        this.props.dispatch(createBoard("demo1", demoBoards.demo1));
-        this.props.dispatch(createBoard("demo2", demoBoards.demo2));
-        this.props.dispatch(createBoard("demo3", demoBoards.demo3));
+        this.props.dispatch(createBoard("demo1", demoBoards.demo1.widgets));
+        this.props.dispatch(createBoard("demo2", demoBoards.demo2.widgets));
+        this.props.dispatch(createBoard("demo3", demoBoards.demo3.widgets));
     }
     onSelect(e) {
         this.setState({
@@ -28,27 +28,41 @@ class DemoCarousel extends Component {
             { name: 'Demo 3', value: 'demo3' },
           ];
         return (
-            <Row>
-                <Col sm={4}>
-                    <ButtonGroup toggle>
-                        {radios.map((radio, idx) => (
-                            <ToggleButton
-                                key={idx}
-                                type="radio"
-                                variant="light"
-                                name="radio"
-                                value={radio.value}
-                                checked={this.state.currentDemo === radio.value}
-                                onChange={(e) => this.onSelect(e.currentTarget.value)}
-                            >
-                                {radio.name}
-                            </ToggleButton>
-                        ))}
-                    </ButtonGroup>
-                </Col>
-                <Col sm={8} className="demo-canvas-container">
-                    <DashboardCanvas boardID={this.state.currentDemo} demo={true} />
-                </Col>
+            <Row className = "landing-demo-section">
+                <Row className = "landing-demo-header-container justify-content-center">
+                    <h1>
+                        Potential Use Cases
+                    </h1>
+                </Row>
+                <Row>
+                    <Col sm={5} className = "demo-canvas-info">
+                        <Row className = "demo-button-container justify-content-center">
+                            <ButtonGroup toggle>
+                                {radios.map((radio, idx) => (
+                                    <ToggleButton
+                                        key={idx}
+                                        type="radio"
+                                        variant="light"
+                                        name="radio"
+                                        value={radio.value}
+                                        checked={this.state.currentDemo === radio.value}
+                                        onChange={(e) => this.onSelect(e.currentTarget.value)}
+                                    >
+                                        {radio.name}
+                                    </ToggleButton>
+                                ))}
+                            </ButtonGroup>
+                        </Row>
+                        <Row className = "demo-description-container">
+                            <p className = "demo-description">
+                                {demoBoards[this.state.currentDemo].description}
+                            </p>
+                        </Row>
+                    </Col>
+                    <Col sm={7} className="demo-canvas-container">
+                        <DashboardCanvas boardID={this.state.currentDemo} demo={true} />
+                    </Col>
+                </Row>
 
             </Row>
         );
