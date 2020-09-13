@@ -4,10 +4,22 @@ import NumberWidget from '../widgets/NumberWidget';
 import { WidgetType } from '../../util/WidgetType';
 import { connect } from 'react-redux'
 import { withFirebase } from '../../firebase';
+import { unselectAll, addSavedWidget, createBoard, deleteWidgets } from '../../actions';
 
 import keydown, { Keys } from 'react-keydown';
 
 class DashboardCanvas extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            mouseDown: false,
+            dragging: false
+        };
+        console.log(props);
+        this.props.firebase.boardMgr.getBoardData(this.props.boardID, (data) => this.boardDataLoaded(data));
+        this.props.dispatch(createBoard(this.props.boardID, []));
+    }
+
     @keydown('ctrl+c') // or specify `which` code directly, in this case 13
     onCtrlC() {
         console.log("control c");
@@ -15,9 +27,8 @@ class DashboardCanvas extends Component{
 
     @keydown('backspace') // or specify `which` code directly, in this case 13
     onBackspace() {
-        // const widgetsToDelete = this.props.widgets.filter((w) => (w.selected)).map(w => w.id);
-        // this.props.dispatch(deleteWidgets(widgetsToDelete, this.props.boardID));
-        
+        const widgetsToDelete = this.props.widgets.filter((w) => (w.selected)).map(w => w.id);
+        this.props.dispatch(deleteWidgets(widgetsToDelete, this.props.boardID));
     }
 
     renderWidgets(){
@@ -45,9 +56,25 @@ class DashboardCanvas extends Component{
         }
     }
 
+    boardDataLoaded(data) {
+        const widgets = data.widgets;
+        for (var i = 0; i < widgets.length; i += 1) {
+            this.props.dispatch(addSavedWidget(widgets[i], this.props.boardID));
+        }
+    }
+
+    onMouseDown(e) {
+        if (!this.state.dragging && e.target.className === "dashboard-viewer")
+            this.props.dispatch(unselectAll());
+        this.setState({
+            mouseDown: true
+        });
+    }
+
     render(){
         return (
-            <div className="dashboard-canvas" >
+            <div className="dashboard-canvas" 
+            onMouseDown={this.onMouseDown.bind(this)}>
                 {this.renderWidgets()}
             </div>
         );
@@ -55,22 +82,21 @@ class DashboardCanvas extends Component{
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const boardID = ownProps.match.params.id
+    const boardID = ownProps.boardID
     var boards = state.boards.filter((b) => (b.id == boardID));
     if(boards.length > 0 && state.widgets.length > 0){
         const curBoard = boards[0];
         
         const curWidgets = state.widgets.filter(w => curBoard.widgets.includes(w.id));
         return ({
-            widgets: curWidgets,
-            boardID: boardID
+            widgets: curWidgets
         });
     }
     return ({
-        widgets: state.widgets,
-        state: state,
-        boardID: boardID
+        widgets: []
     });
 }
 
-export default DashboardCanvas;
+export default connect(
+    mapStateToProps
+)(withFirebase(DashboardCanvas));
