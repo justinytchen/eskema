@@ -67,6 +67,19 @@ class WidgetContainer extends Component{
         this.props.dispatch(setWidgetState(this.props.widget.id, state));
     }
 
+    onMouseEnter(){
+        this.setState({
+            hover: true
+        });
+    }
+
+
+    onMouseExit(){
+        this.setState({
+            hover: false
+        });
+    }
+
     render(){
         var content = this.props.renderDisplayMode();
         var className = "widget-container display-mode"
@@ -74,7 +87,7 @@ class WidgetContainer extends Component{
             content = this.props.renderEditMode(this.stateChanged.bind(this));
             className = "widget-container edit-mode"
         }
-        if(this.props.widget.editMode)
+        if(this.props.widget.editMode || this.state.hover)
             className += " widget-hover"
 
         if(this.props.widget.selected)
@@ -94,6 +107,8 @@ class WidgetContainer extends Component{
                  onDrag = {this.onDrag.bind(this)}
                  onClick = {this.onMouseClick.bind(this)}
                  enableResizing = {this.props.widget.editMode ? this.props.enableResizing : disableResizing}
+                 onMouseEnter = {this.onMouseEnter.bind(this)}
+                 onMouseLeave = {this.onMouseExit.bind(this)}
                  ref={c => { this.rnd = c; }}
                  default={defaults}
                  bounds={"parent"}
