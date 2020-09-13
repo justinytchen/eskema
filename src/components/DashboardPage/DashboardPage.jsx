@@ -12,8 +12,8 @@ class DashboardPage extends Component {
         const boardID = this.props.match.params.id;
         return (
             <div className="dashboard-viewer">
-                <DashboardCanvas boardID={boardID}/>
                 <DashboardNav boardID={boardID} />
+                <DashboardCanvas boardID={boardID}/>
             </div>
         );
     }
