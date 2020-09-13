@@ -71,10 +71,8 @@ const widgets = (state = [], action) => {
         case 'UNSELECT_ALL':
             return state.map(widget => { return { ...widget, selected: false } });
         case 'CREATE_BOARD':
-            console.log(action);
             var oldState = state;
             oldState = oldState.concat(action.widgets);
-            console.log(oldState);
             return oldState;
         default:
             return state

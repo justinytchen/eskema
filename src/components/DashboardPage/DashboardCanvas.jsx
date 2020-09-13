@@ -5,6 +5,8 @@ import { WidgetType } from '../../util/WidgetType';
 import { connect } from 'react-redux'
 import { withFirebase } from '../../firebase';
 import { unselectAll, addSavedWidget, createBoard, deleteWidgets } from '../../actions';
+import CanvasDraw from "react-canvas-draw";
+import {compress, decompress} from "lz-string"
 
 import keydown, { Keys } from 'react-keydown';
 
@@ -19,11 +21,29 @@ class DashboardCanvas extends Component{
             this.props.firebase.boardMgr.getBoardData(this.props.boardID, (data) => this.boardDataLoaded(data));
             this.props.dispatch(createBoard(this.props.boardID, []));
         }
+        this.canvasRef = React.createRef();
     }
 
     @keydown('ctrl+c') // or specify `which` code directly, in this case 13
     onCtrlC() {
+        
         console.log("control c");
+        var savedData =  this.canvasRef.getSaveData()
+        savedData = compress(JSON.stringify(savedData));
+        localStorage.setItem(
+            "savedDrawing",
+            savedData
+          );
+    }
+
+    @keydown('ctrl+v') // or specify `which` code directly, in this case 13
+    onCtrlV() {
+        console.log("control v");
+        var savedData = localStorage.getItem("savedDrawing");
+        savedData = JSON.parse(decompress(savedData));
+        this.canvasRef.loadSaveData(
+            savedData, true
+        );
     }
 
     @keydown('backspace') // or specify `which` code directly, in this case 13
@@ -76,6 +96,9 @@ class DashboardCanvas extends Component{
         return (
             <div className="dashboard-canvas" 
             onMouseDown={this.onMouseDown.bind(this)}>
+                <div className="canvas-container">
+                    <CanvasDraw hideGrid hideInterface canvasWidth="100vw" canvasHeight="100vh"  ref={canvasDraw => (this.canvasRef = canvasDraw)}/>
+                </div>
                 {this.renderWidgets()}
             </div>
         );
