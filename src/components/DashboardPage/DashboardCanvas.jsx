@@ -104,7 +104,7 @@ class DashboardCanvas extends Component{
             <div className="dashboard-canvas" 
             onMouseDown={this.onMouseDown.bind(this)}>
                 <div className="canvas-container">
-                    <CanvasDraw hideGrid hideInterface canvasWidth="100vw" canvasHeight="100vh"  ref={canvasDraw => (this.canvasRef = canvasDraw)}/>
+                    <CanvasDraw hideGrid hideInterface canvasWidth="100%" canvasHeight="100%"  ref={canvasDraw => (this.canvasRef = canvasDraw)}/>
                 </div>
                 {this.renderWidgets()}
             </div>
