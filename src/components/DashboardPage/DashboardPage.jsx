@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
-import { connect } from 'react-redux'
 import './DashboardPage.css';
 import { unselectAll, addSavedWidget, createBoard, deleteWidgets } from '../../actions';
 import keydown, { Keys } from 'react-keydown';

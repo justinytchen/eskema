@@ -15,9 +15,10 @@ class DashboardCanvas extends Component{
             mouseDown: false,
             dragging: false
         };
-        console.log(props);
-        this.props.firebase.boardMgr.getBoardData(this.props.boardID, (data) => this.boardDataLoaded(data));
-        this.props.dispatch(createBoard(this.props.boardID, []));
+        if(!this.props.demo){
+            this.props.firebase.boardMgr.getBoardData(this.props.boardID, (data) => this.boardDataLoaded(data));
+            this.props.dispatch(createBoard(this.props.boardID, []));
+        }
     }
 
     @keydown('ctrl+c') // or specify `which` code directly, in this case 13

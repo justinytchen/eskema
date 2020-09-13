@@ -1,9 +1,10 @@
+import { newGuid } from '../../util/ObjectUtils';
 import { WidgetType } from '../../util/WidgetType';
 
 const demoBoards = {
     "demo1": [
         {
-            id: 0,
+            id: newGuid(),
             widgetType: WidgetType.NumberWidget,
             selected: false,
             x: 0,
@@ -15,7 +16,7 @@ const demoBoards = {
             state: "0"
         },
         {
-            id: 1,
+            id: newGuid(),
             widgetType: WidgetType.NumberWidget,
             selected: false,
             x: 0,
@@ -27,7 +28,7 @@ const demoBoards = {
             state: "0"
         },
         {
-            id: 2,
+            id: newGuid(),
             widgetType: WidgetType.TextFieldWidget,
             selected: false,
             x: 50,
@@ -41,7 +42,7 @@ const demoBoards = {
     ],
     "demo2": [
         {
-            id: 0,
+            id: newGuid(),
             widgetType: WidgetType.NumberWidget,
             selected: false,
             x: 0,
@@ -53,7 +54,7 @@ const demoBoards = {
             state: "0"
         },
         {
-            id: 2,
+            id: newGuid(),
             widgetType: WidgetType.TextFieldWidget,
             selected: false,
             x: 50,
@@ -67,11 +68,11 @@ const demoBoards = {
     ],
     "demo3": [
         {
-            id: 2,
+            id: newGuid(),
             widgetType: WidgetType.TextFieldWidget,
             selected: false,
-            x: 50,
-            y: 50,
+            x: 90,
+            y: 40,
             width: "auto",
             height: "auto",
             editMode: false,
@@ -79,11 +80,11 @@ const demoBoards = {
             state: "asdfasdf"
         },
         {
-            id: 2,
+            id: newGuid(),
             widgetType: WidgetType.TextFieldWidget,
             selected: false,
-            x: 50,
-            y: 50,
+            x: 0,
+            y: 0,
             width: "auto",
             height: "auto",
             editMode: false,
@@ -91,11 +92,11 @@ const demoBoards = {
             state: "asdfasdf"
         },
         {
-            id: 2,
+            id: newGuid(),
             widgetType: WidgetType.TextFieldWidget,
             selected: false,
-            x: 50,
-            y: 50,
+            x: 80,
+            y: 80,
             width: "auto",
             height: "auto",
             editMode: false,

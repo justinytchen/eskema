@@ -16,7 +16,7 @@ const boards = (state = [], action) => {
                 ...state,
                 {
                     id: action.id,
-                    widgets: action.widgets
+                    widgets: action.widgets.map(w => w.id)
                 }
             ];
         case 'ADD_SAVED_WIDGET':
