@@ -16,6 +16,9 @@ class WidgetContainer extends Component{
     }
     
     toggleEditMode(){
+        this.setState({
+            hover: false
+        });
         console.log("toggleEditMode");
         if(this.props.widget.editMode){
             this.props.dispatch(setWidgetState(this.props.widget.id, this.props.getCurrentState()));
