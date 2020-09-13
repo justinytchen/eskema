@@ -17,9 +17,10 @@ class FirebaseBoardManager{
         });
     }
 
-    saveWidgetsToBoard(boardID, widgetsList){
+    saveBoard(boardID, widgetsList, savedDrawing){
         this.db.collection("boards").doc(boardID).set({
-            widgets: widgetsList
+            widgets: widgetsList,
+            savedDrawing: savedDrawing
         });
     }
 

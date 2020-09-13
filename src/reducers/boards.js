@@ -16,7 +16,8 @@ const boards = (state = [], action) => {
                 ...state,
                 {
                     id: action.id,
-                    widgets: action.widgets.map(w => w.id)
+                    widgets: action.widgets.map(w => w.id),
+                    savedDrawing: action.savedDrawing
                 }
             ];
         case 'ADD_SAVED_WIDGET':
@@ -34,6 +35,13 @@ const boards = (state = [], action) => {
                     return board;
                 }
                 return { ...board, widgets: board.widgets.filter((w) => !action.widgets.includes(w)) }
+            });
+        case 'SAVE_DRAWING':
+            return state.map(board => {
+                if (board.id !== action.id) {
+                    return board;
+                }
+                return { ...board, savedDrawing: action.savedDrawing }
             });
         default:
             return state;

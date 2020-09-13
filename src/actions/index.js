@@ -66,8 +66,15 @@ export const deleteWidgets = (widgetIDs, boardID) => ({
     boardID: boardID
 })
 
-export const createBoard = (id, widgets) => ({
+export const createBoard = (id, widgets, savedDrawing) => ({
     type: 'CREATE_BOARD',
     id: id,
-    widgets: widgets ? widgets: []
+    widgets: widgets ? widgets: [],
+    savedDrawing: savedDrawing
+})
+
+export const saveDrawing = (id, savedDrawing) => ({
+    type: 'SAVE_DRAWING',
+    id: id,
+    savedDrawing: savedDrawing
 })

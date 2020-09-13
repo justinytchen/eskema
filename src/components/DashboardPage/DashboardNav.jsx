@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import CreateWidgetModal from './CreateWidgetModal';
 import {Row, Col, Container, Button} from 'react-bootstrap';
 import {withFirebase} from "../../firebase";
+import { connect } from 'react-redux';
 
 class DashboardNav extends Component{
     onSave(){
-        this.props.firebase.boardMgr.saveWidgetsToBoard(this.props.boardID, this.props.widgets);
+        console.log(this.props);
+        this.props.firebase.boardMgr.saveBoard(this.props.boardID, this.props.widgets, this.props.savedDrawing);
     }
 
     render(){
@@ -26,4 +28,24 @@ class DashboardNav extends Component{
     }
 }
 
-export default withFirebase(DashboardNav);
+
+const mapStateToProps = (state, ownProps) => {
+    const boardID = ownProps.boardID
+    var boards = state.boards.filter((b) => (b.id == boardID));
+    if(boards.length > 0){
+        const curBoard = boards[0];
+        
+        const curWidgets = state.widgets.filter(w => curBoard.widgets.includes(w.id));
+        return ({
+            widgets: curWidgets,
+            savedDrawing: curBoard.savedDrawing
+        });
+    }
+    return ({
+        widgets: []
+    });
+}
+
+export default connect(
+    mapStateToProps
+)(withFirebase(DashboardNav));
