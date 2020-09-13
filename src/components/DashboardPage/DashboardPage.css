@@ -1,3 +1,12 @@
 .dashboard-viewer{
     height:100%
 }
+
+.dashboard-canvas{
+    height:100%
+}
+
+.dashboard-page-nav{
+    position: absolute; 
+    top:0
+}

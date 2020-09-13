@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { AuthUserContext } from '../../session';
 import LandingPageAuth from './LandingPageAuth';
 import LandingPageNonAuth from './LandingPageNonAuth';
+import "./LandingPage.css";
 
 class LandingPage extends Component{
     render(){

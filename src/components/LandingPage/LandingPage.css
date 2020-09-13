@@ -1,0 +1,11 @@
+.landing-container button{
+    border-color: white;
+}
+
+.demo-canvas-container .dashboard-canvas{
+    height:500px;
+}
+
+.landing-container{
+    overflow-x: hidden;
+}

@@ -8,11 +8,15 @@ import { connect } from 'react-redux';
 class WidgetContainer extends Component{
     constructor(props){
         super(props);
+        this.state  = {
+            editMode: this.props.editMode
+        }
         if(!this.props.widget.state)
             this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
     }
     
     toggleEditMode(){
+        console.log("toggleEditMode");
         if(this.props.widget.editMode){
             this.props.dispatch(setWidgetState(this.props.widget.id, this.props.getCurrentState()));
             if(this.props.toDisplayMode)
@@ -92,6 +96,7 @@ class WidgetContainer extends Component{
                  enableResizing = {this.props.widget.editMode ? this.props.enableResizing : disableResizing}
                  ref={c => { this.rnd = c; }}
                  default={defaults}
+                 bounds={"parent"}
             >
                 <div className={className} 
                     onDoubleClick = {this.toggleEditMode.bind(this)} >

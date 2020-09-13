@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Navbar, Form, FormControl, Nav } from 'react-bootstrap';
 import { newGuid } from '../../util/ObjectUtils';
 import { withFirebase } from '../../firebase';
 import NewBoardButton from './NewBoardButton';
+import DemoCarousel from './DemoCarousel';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
@@ -25,20 +26,29 @@ class LandingPageNonAuthBase extends Component {
     render() {
         return (
             <div className="landing-container">
-                <Row>
-                    <Col lg={3}>z</Col>
-                    <Col lg={3}>
+                <Navbar>
+                    <Navbar.Brand href="/">
+                        <img
+                            alt=""
+                            src="/logo.svg"
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                        />{' '}
+                        Some Name
+                    </Navbar.Brand>
+                    <Nav className="mr-auto">
+                        {/* <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+                    </Nav>
+                    <Nav>
+                        <Button variant="outline-secondary">About</Button>
+                        <Button variant="outline-secondary" onClick={() => this.onRegisterLogin()}>Register/Login</Button>
                         <NewBoardButton />
-                    </Col>
-                    <Col lg={3}>
-                    </Col>
-                    <Col lg={3}>
-                        <Button onClick={() => this.onRegisterLogin()}>Register/Login</Button>
-                    </Col>
-                </Row>
-                <Row>
-                    <img src="https://goodfortunedesignstudio.com/wp-content/uploads/2019/01/Placeholder-Graphic-Icon.jpg"></img>
-                </Row>
+                    </Nav>
+                </Navbar>
+                    <DemoCarousel />
             </div>
         );
     }

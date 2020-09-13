@@ -3,9 +3,10 @@ import DashboardCanvas from './DashboardCanvas';
 import DashboardNav from './DashboardNav';
 import { connect } from 'react-redux'
 import './DashboardPage.css';
-import { deleteSelectedWidgets, unselectAll, addSavedWidget } from '../../actions';
+import { unselectAll, addSavedWidget, createBoard, deleteWidgets } from '../../actions';
 import keydown, { Keys } from 'react-keydown';
 import { withFirebase } from '../../firebase';
+import widgets from '../../reducers/widgets';
 
 class DashboardPage extends Component {
     constructor(props) {
@@ -14,14 +15,14 @@ class DashboardPage extends Component {
             mouseDown: false,
             dragging: false
         };
-        const boardID = this.props.match.params.id;
-        this.props.firebase.boardMgr.getBoardData(boardID, (data) => this.boardDataLoaded(data));
+        this.props.dispatch(createBoard(this.props.boardID, []));
+        this.props.firebase.boardMgr.getBoardData(this.props.boardID, (data) => this.boardDataLoaded(data));
     }
 
-    boardDataLoaded(data){
+    boardDataLoaded(data) {
         const widgets = data.widgets;
-        for(var i = 0; i < widgets.length; i+=1){
-            this.props.dispatch(addSavedWidget(widgets[i]));
+        for (var i = 0; i < widgets.length; i += 1) {
+            this.props.dispatch(addSavedWidget(widgets[i], this.props.boardID));
         }
     }
 
@@ -34,15 +35,17 @@ class DashboardPage extends Component {
     }
 
 
-    @keydown( 'ctrl+c' ) // or specify `which` code directly, in this case 13
-    onCtrlC() {
-        console.log("control c");
-    }
+    // @keydown('ctrl+c') // or specify `which` code directly, in this case 13
+    // onCtrlC() {
+    //     console.log("control c");
+    // }
 
-    @keydown( 'backspace' ) // or specify `which` code directly, in this case 13
-    onBackspace() {
-        this.props.dispatch(deleteSelectedWidgets());
-    }
+    // @keydown('backspace') // or specify `which` code directly, in this case 13
+    // onBackspace() {
+    //     const widgetsToDelete = this.props.widgets.filter((w) => (w.selected)).map(w => w.id);
+    //     this.props.dispatch(deleteWidgets(widgetsToDelete, this.props.boardID));
+        
+    // }
 
     render() {
         const boardID = this.props.match.params.id;
@@ -50,16 +53,30 @@ class DashboardPage extends Component {
             <div className="dashboard-viewer"
                 onMouseDown={this.onMouseDown.bind(this)}>
                 <DashboardCanvas widgets={this.props.widgets} />
-                <DashboardNav widgets={this.props.widgets} boardID = {boardID}/>
+                <DashboardNav widgets={this.props.widgets} boardID={boardID} />
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    widgets: state.widgets
-})
-
+const mapStateToProps = (state, ownProps) => {
+    const boardID = ownProps.match.params.id
+    var boards = state.boards.filter((b) => (b.id == boardID));
+    if(boards.length > 0 && state.widgets.length > 0){
+        const curBoard = boards[0];
+        
+        const curWidgets = state.widgets.filter(w => curBoard.widgets.includes(w.id));
+        return ({
+            widgets: curWidgets,
+            boardID: boardID
+        });
+    }
+    return ({
+        widgets: state.widgets,
+        state: state,
+        boardID: boardID
+    });
+}
 export default connect(
     mapStateToProps
 )(withFirebase(DashboardPage));

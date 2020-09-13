@@ -10,7 +10,7 @@ class DashboardNav extends Component{
 
     render(){
         return (
-            <Container>
+            <Container className = "dashboard-page-nav">
                 <Row>
                     <Col>
                         <CreateWidgetModal />

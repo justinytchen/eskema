@@ -4,7 +4,7 @@ const widgets = (state = [], action) => {
             return [
                 ...state,
                 {
-                    id: action.id,
+                    id: action.widgetID,
                     widgetType: action.widgetType,
                     selected: false,
                     x: 0,
@@ -66,10 +66,8 @@ const widgets = (state = [], action) => {
                     ? { ...widget, x: action.x, y: action.y }
                     : widget
             )
-        case 'DELETE_WIDGET':
-            return state.filter(widget => widget.id !== action.id);
-        case 'DELETE_SELECTED_WIDGETS':
-            return state.filter(widget => widget.selected == false);
+        case 'DELETE_WIDGETS':
+            return state.filter(widget => !action.widgets.includes(widget.id));
         case 'UNSELECT_ALL':
             return state.map(widget => { return { ...widget, selected: false } })
         default:

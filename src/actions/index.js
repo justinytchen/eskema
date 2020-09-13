@@ -1,12 +1,14 @@
-export const createWidget = (guid, widgetType) => ({
-    id: guid,
+export const createWidget = (widgetID, widgetType, boardID) => ({
+    widgetID: widgetID,
     type: 'CREATE_WIDGET',
     widgetType: widgetType,
+    boardID: boardID
 })
 
-export const addSavedWidget = (widget) => ({
+export const addSavedWidget = (widget, boardID) => ({
     type: 'ADD_SAVED_WIDGET',
-    widget: widget
+    widget: widget,
+    boardID: boardID
 })
 
 export const setVisibilityFilter = filter => ({
@@ -58,11 +60,14 @@ export const unselectAll = () => ({
     type: 'UNSELECT_ALL'
 })
 
-export const deleteWidget = (id) => ({
-    type: 'DELETE_WIDGET',
-    id: id
+export const deleteWidgets = (widgetIDs, boardID) => ({
+    type: 'DELETE_WIDGETS',
+    widgets: widgetIDs,
+    boardID: boardID
 })
 
-export const deleteSelectedWidgets = () => ({
-    type: 'DELETE_SELECTED_WIDGETS'
+export const createBoard = (id, widgets) => ({
+    type: 'CREATE_BOARD',
+    id: id,
+    widgets: widgets ? widgets: []
 })
