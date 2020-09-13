@@ -92,6 +92,13 @@ class DashboardCanvas extends Component{
         });
     }
 
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.boardID !== prevProps.boardID) {
+          this.canvasRef.clear();
+        }
+      }
+
     render(){
         return (
             <div className="dashboard-canvas" 
