@@ -9,3 +9,30 @@
 .landing-container{
     overflow-x: hidden;
 }
+
+.landing-jumbotron{
+    padding-top: 200px;
+    padding-bottom:200px;
+}
+
+
+
+.jumbotron-popup{
+    background: white;
+    padding: 40px 80px 40px 80px ;
+    box-shadow: 2px 2px 10px;
+    border-radius: 20px;
+}
+
+.landing-unauth-navbar{
+    background: #222222;
+}
+
+.landing-unauth-navbar .navbar-buttons button{
+    border: #222222;
+}
+
+.landing-unauth-navbar .light-text-button{
+    margin: 0px 5px 0px 5px;
+    color:white
+}

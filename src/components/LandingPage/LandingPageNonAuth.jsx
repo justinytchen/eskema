@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Navbar, Form, FormControl, Nav } from 'react-bootstrap';
+import { Jumbotron, Row, Button, Navbar, Nav, Col, Container } from 'react-bootstrap';
 import { newGuid } from '../../util/ObjectUtils';
 import { withFirebase } from '../../firebase';
 import NewBoardButton from './NewBoardButton';
 import DemoCarousel from './DemoCarousel';
+import bgImage from '../../images/whiteboard2.jpg';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
@@ -26,7 +27,7 @@ class LandingPageNonAuthBase extends Component {
     render() {
         return (
             <div className="landing-container">
-                <Navbar>
+                <Navbar className = "landing-unauth-navbar">
                     <Navbar.Brand href="/">
                         <img
                             alt=""
@@ -38,17 +39,35 @@ class LandingPageNonAuthBase extends Component {
                         Some Name
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        {/* <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                     </Nav>
-                    <Nav>
-                        <Button variant="outline-secondary">About</Button>
-                        <Button variant="outline-secondary" onClick={() => this.onRegisterLogin()}>Register/Login</Button>
+                    <Nav className = "navbar-buttons">
+                        <Button className = "light-text-button" variant="outline-secondary">About</Button>
+                        <Button className = "light-text-button" variant="outline-secondary" onClick={() => this.onRegisterLogin()}>Register/Login</Button>
                         <NewBoardButton />
                     </Nav>
                 </Navbar>
-                    <DemoCarousel />
+                <div className="landing-jumbotron" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover' }}>
+                    <Container>
+                        <Row className="justify-content-md-center">
+                            <Col xs lg="2">
+                            </Col>
+                            <Col md="auto" className = "jumbotron-popup"><Row>
+                                    <h1>Welcome to [Insert Name]!</h1>
+                                </Row>
+                                <Row>
+                                    <p>
+                                        A virtual whiteboard for education, productivity, or fun
+                                    </p>
+                                </Row>
+                                <Row>
+                                    <Button variant="primary">Get Started</Button>
+                                </Row></Col>
+                            <Col xs lg="2">
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+                <DemoCarousel />
             </div>
         );
     }
