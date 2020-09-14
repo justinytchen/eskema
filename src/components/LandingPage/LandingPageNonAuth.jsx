@@ -6,6 +6,7 @@ import NewBoardButton from './NewBoardButton';
 import DemoCarousel from './DemoCarousel';
 import bgImage from '../../images/jumbotronbackground.jpg';
 import logo from '../../images/logo.png';
+import Features from './Features';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
@@ -69,6 +70,7 @@ class LandingPageNonAuthBase extends Component {
                     </Container>
                 </div>
                 <DemoCarousel />
+                <Features />
             </div>
         );
     }

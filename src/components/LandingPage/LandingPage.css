@@ -87,3 +87,20 @@
     padding-top:0px;
     font-size: 30px;
 }
+
+.landing-features-header{
+    padding: 40px 0px 40px 0px;
+    color: #00003a;
+}
+
+.landing-features {
+    padding-bottom: 50px;
+}
+
+.card-image-container{
+    padding: 1.25rem 0 0 1.25rem;
+}
+
+.card-image-container img{
+    max-width:50px;
+}
