@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DashboardCanvas from './DashboardCanvas';
-import DashboardNav from './DashboardNav';
 import './DashboardPage.css';
 
 class DashboardPage extends Component {

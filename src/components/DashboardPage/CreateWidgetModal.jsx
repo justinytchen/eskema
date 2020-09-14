@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Modal, Row, Col, Container} from 'react-bootstrap';
 import { connect } from 'react-redux'
-import { createWidget, setWidgetPosDim } from '../../actions'
+import { createWidget } from '../../actions'
 import { WidgetData, WidgetType } from '../../util/WidgetType';
 import { newGuid } from '../../util/ObjectUtils';
 

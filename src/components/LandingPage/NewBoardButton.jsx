@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Row, Col, Button} from 'react-bootstrap';
-import {newGuid} from '../../util/ObjectUtils';
+import {Button} from 'react-bootstrap';
 import { withFirebase } from '../../firebase';
-import { connect  } from 'react-redux';
 import {withRouter} from 'react-router';
 
 class NewBoardButtonBase extends Component{

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col, Row, ButtonGroup, ToggleButton } from 'react-bootstrap';
-import ReactDOM from 'react-dom';
 import { demoBoards } from '../demoBoards.js';
 import DashboardCanvas from "../../DashboardPage/DashboardCanvas"
 import { createBoard } from '../../../actions/index.js';
@@ -14,7 +13,7 @@ class DemoSection extends Component {
         this.state = {
             currentDemo: "demo1",
             typing: true,
-            messages: ["to take notes","to organize your thoughts", "to brainstorm new ideas", "to teach others"]
+            messages: ["to take notes","to organize your thoughts", "to brainstorm new ideas", "to teach"]
         };
         this.props.dispatch(createBoard("demo1", demoBoards.demo1.widgets));
         this.props.dispatch(createBoard("demo2", demoBoards.demo2.widgets));
@@ -38,8 +37,7 @@ class DemoSection extends Component {
             typistContent.push(<Typist.Backspace count={this.state.messages[i].length} delay={600}  key={2*i}/>);
             typistContent.push('');
         }
-        const message = this.state.messages[0];
-
+        
         const radios = [
             { name: 'Demo 1', value: 'demo1' },
             { name: 'Demo 2', value: 'demo2' },

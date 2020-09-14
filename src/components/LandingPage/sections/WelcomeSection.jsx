@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Button, Navbar, Nav, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import bgImage from '../../../images/jumbotronbackground.jpg';
 import NewBoardButton from '../NewBoardButton';

@@ -4,14 +4,14 @@ import NumberWidget from '../widgets/NumberWidget';
 import { WidgetType } from '../../util/WidgetType';
 import { connect } from 'react-redux'
 import { withFirebase } from '../../firebase';
-import { unselectAll, addSavedWidget, createBoard, deleteWidgets, updateDrawing, saveDrawing } from '../../actions';
+import { unselectAll, addSavedWidget, createBoard, deleteWidgets, saveDrawing } from '../../actions';
 import CanvasDraw from "react-canvas-draw";
 import { compress, decompress } from "lz-string";
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import DashboardNav from "./DashboardNav";
 import { setDrawMode } from '../../actions';
 
-import keydown, { Keys } from 'react-keydown';
+import keydown from 'react-keydown';
 
 class DashboardCanvas extends Component {
     constructor(props) {
@@ -163,7 +163,7 @@ class DashboardCanvas extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     const boardID = ownProps.boardID;
-    var boards = state.boards.filter((b) => (b.id == boardID));
+    var boards = state.boards.filter((b) => (b.id === boardID));
     if (boards.length > 0) {
         const curBoard = boards[0];
 

@@ -1,5 +1,3 @@
-import undoable, { distinctState } from 'redux-undo'
-
 const boards = (state = [], action) => {
     switch (action.type) {
         case 'CREATE_WIDGET':
