@@ -4,7 +4,7 @@ import { newGuid } from '../../util/ObjectUtils';
 import { withFirebase } from '../../firebase';
 import NewBoardButton from './NewBoardButton';
 import DemoCarousel from './DemoCarousel';
-import bgImage from '../../images/whiteboard2.jpg';
+import bgImage from '../../images/jumbotronbackground.jpg';
 import logo from '../../images/logo.png';
 
 class LandingPageNonAuthBase extends Component {

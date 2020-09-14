@@ -63,13 +63,31 @@
     margin:20px 40px 20px 40px;
 }
 
-.landing-demo-header-container{
-    margin:0;
-    width:100%;
-    color:white;
-    padding-top:60px;
-}
 
 .landing-container .landing-unauth-navbar a{
     color:white;
+}
+
+.hidden-span{
+    visibility: hidden;
+}
+
+.landing-demo-header{
+    margin:0;
+    width:100%;
+    color:white;
+    font-size: 40px;
+    padding-top:50px;
+}
+
+.landing-demo-header-typist{
+    margin:0;
+    width:100%;
+    color:white;
+    padding-top:0px;
+    font-size: 30px;
+}
+
+.landing-demo-section{
+    color:white
 }
