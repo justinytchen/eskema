@@ -43,8 +43,10 @@
 .landing-demo-section{
     background-image: linear-gradient(to bottom right, #00002A,#333333);
 }
-.demo-canvas-info{
-    padding-top:50px;
+
+.landing-demo-section .row{
+    padding: 10px;
+    margin: 10px !important;
 }
 
 .demo-button-container{
@@ -52,7 +54,7 @@
 }
 
 .demo-canvas-container{
-    padding: 50px 50px 50px 0px;
+    padding: 0px 35px 35px 35px;
 }
 
 .demo-description{
