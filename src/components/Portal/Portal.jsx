@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import {newGuid} from '../../util/ObjectUtils';
 import { withFirebase } from '../../firebase';
-import NewBoardButton from './NewBoardButton';
+import NewBoardButton from '../LandingPage/NewBoardButton';
 
-class LandingPageAuthBase extends Component{
+class PortalBase extends Component{
     createNewBoard(){
         const guid = newGuid();
         this.props.history.push("/board/" + guid);
@@ -38,5 +38,5 @@ class LandingPageAuthBase extends Component{
     }
 }
 
-const LandingPageAuth = withFirebase(LandingPageAuthBase);
-export default LandingPageAuth;
+const Portal = withFirebase(PortalBase);
+export default Portal;

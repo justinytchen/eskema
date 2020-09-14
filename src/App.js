@@ -3,10 +3,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
-import LandingPage from "./components/LandingPage/LandingPage";
 import Overview from "./components/Overview";
 import { withAuthentication } from './session';
-import LandingPageNonAuth from './components/LandingPage/LandingPageNonAuth';
+import LandingPage from './components/LandingPage/LandingPage';
+import HomePage from './components/LandingPage/HomePage';
 
 class App extends Component{
   constructor(props){
@@ -21,10 +21,10 @@ class App extends Component{
       <Router>
         <main>
           <Switch>
-            <Route path="/" exact component={LandingPage} />
+            <Route path="/" exact component={HomePage} />
             <Route path="/board/:id"  component={DashboardPage} />
             <Route path="/overview"  component={Overview} />
-            <Route path="/home"  component={LandingPageNonAuth} />
+            <Route path="/home"  component={LandingPage} />
             <Route render={() => <Redirect to={{pathname: "/"}} />} />
             
           </Switch>

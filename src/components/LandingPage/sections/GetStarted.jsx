@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Jumbotron, Row, Container, Col } from 'react-bootstrap';
-import NewBoardButton from './NewBoardButton';
-import RegisterLoginButton from './RegisterLoginButton';
-import bgImage from '../../images/whiteboardbg.jpg';
-import RestartingTypist from './RestartingTypist';
+import NewBoardButton from '../NewBoardButton';
+import RegisterLoginButton from '../RegisterLoginButton';
+import bgImage from '../../../images/whiteboardbg.jpg';
 
 class GetStarted extends Component {
 
@@ -20,9 +19,7 @@ class GetStarted extends Component {
                             </Row>
                             <Row className="justify-content-center" >
                                 <Col>
-                                </Col>
-                                <Col>
-                                    <Row className="justify-content-center">
+                                    <Row className="get-started-register-button-container justify-content-center">
                                         <RegisterLoginButton />
                                     </Row>
                                 </Col>
@@ -30,8 +27,6 @@ class GetStarted extends Component {
                                     <Row className="justify-content-center">
                                         <NewBoardButton />
                                     </Row>
-                                </Col>
-                                <Col>
                                 </Col>
                             </Row></Col>
                         <Col xs lg="2">

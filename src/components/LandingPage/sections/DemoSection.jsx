@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Col, Row, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
-import { demoBoards } from './demoBoards.js';
-import DashboardCanvas from "../DashboardPage/DashboardCanvas"
-import { createBoard } from '../../actions/index.js';
+import { demoBoards } from '../demoBoards.js';
+import DashboardCanvas from "../../DashboardPage/DashboardCanvas"
+import { createBoard } from '../../../actions/index.js';
 import Typist from 'react-typist';
 import { connect } from 'react-redux';
-import RestartingTypist from './RestartingTypist';
+import RestartingTypist from '../RestartingTypist';
 
-class DemoCarousel extends Component {
+class DemoSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -96,4 +96,4 @@ class DemoCarousel extends Component {
 
 
 
-export default connect()(DemoCarousel);
+export default connect()(DemoSection);

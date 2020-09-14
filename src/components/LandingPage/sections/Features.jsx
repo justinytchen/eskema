@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardDeck, Row, ButtonGroup, ToggleButton, Container } from 'react-bootstrap';
-import share from '../../images/share.png';
-import add from '../../images/add.png';
-import save from '../../images/save.png';
+import share from '../../../images/share.png';
+import add from '../../../images/add.png';
+import save from '../../../images/save.png';
 
 class Features extends Component {
     render() {

@@ -150,3 +150,7 @@
     box-shadow: 2px 2px 10px;
     border-radius: 20px;
 }
+
+.get-started-register-button-container  button{
+    border-color: grey;
+}
