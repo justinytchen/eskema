@@ -9,6 +9,7 @@ import CanvasDraw from "react-canvas-draw";
 import { compress, decompress } from "lz-string";
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import DashboardNav from "./DashboardNav";
+import { setDrawMode } from '../../actions';
 
 import keydown, { Keys } from 'react-keydown';
 
@@ -67,6 +68,11 @@ class DashboardCanvas extends Component {
     onBackspace() {
         const widgetsToDelete = this.props.widgets.filter((w) => (w.selected)).map(w => w.id);
         this.props.dispatch(deleteWidgets(widgetsToDelete, this.props.boardID));
+
+        if(this.props.board){
+            console.log(this.props.board.drawMode);
+            this.props.dispatch(setDrawMode(this.props.boardID, !this.props.board.drawMode));
+        }
     }
 
     renderWidgets() {
@@ -129,22 +135,24 @@ class DashboardCanvas extends Component {
     }
 
     render() {
+        const enabled = this.props.board && this.props.board.drawMode;
         return (
             <div className="dashboard-canvas"
                 onMouseDown={this.onMouseDown.bind(this)}>
 
                 {!this.props.demo ? <DashboardNav boardID={this.props.boardID} widgets = {this.props.widgets} savedDrawing = {this.props.savedDrawing} board={this.props.board}/> : null}
                 
-                <div className="canvas-container">
+                <div className={"canvas-container" + ((enabled) ? "" : " canvas-disabled")}>
                     <CanvasDraw 
                         onChange={this.onDraw.bind(this)} 
                         hideGrid 
                         brushRadius={4}
+                        brushColor={enabled ? "black": "white"}
                         lazyRadius = {1}
                         canvasWidth="100%" 
                         canvasHeight="100%" 
-                        hideInterface={!this.props.board || !this.props.board.drawMode}
-                        disabled={!this.props.board || !this.props.board.drawMode}
+                        hideInterface={!enabled}
+                        disabled={!enabled}
                         ref={canvasDraw => (this.canvasRef = canvasDraw)} />
                 </div>
                 {this.renderWidgets()}

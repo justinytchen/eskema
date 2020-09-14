@@ -7,13 +7,11 @@ import { setDrawMode } from '../../actions';
 
 class DashboardNav extends Component{
     onSave(){
-        console.log(this.props);
         this.props.firebase.boardMgr.saveBoard(this.props.boardID, this.props.widgets, this.props.savedDrawing);
     }
 
     onToggleDrawMode(){
         if(this.props.board){
-            console.log(this.props.board.drawMode);
             this.props.dispatch(setDrawMode(this.props.boardID, !this.props.board.drawMode));
         }
     }
