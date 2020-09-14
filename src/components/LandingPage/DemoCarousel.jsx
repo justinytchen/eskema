@@ -6,6 +6,7 @@ import DashboardCanvas from "../DashboardPage/DashboardCanvas"
 import { createBoard } from '../../actions/index.js';
 import Typist from 'react-typist';
 import { connect } from 'react-redux';
+import RestartingTypist from './RestartingTypist';
 
 class DemoCarousel extends Component {
     constructor(props) {
@@ -93,19 +94,6 @@ class DemoCarousel extends Component {
     }
 };
 
-class RestartingTypist extends Component {
-    state = { typing: true }
-    done = () => {
-        this.setState({ typing: false }, () => {
-            setTimeout(() => this.setState({ typing: true }), this.props.timeout || 1200);
-        });
-    }
-    render() {
-        const { children, timeout, ...props } = this.props;
-        return this.state.typing ?
-            <Typist {...props} onTypingDone={this.done}>{children}</Typist>
-            : '';
-    }
-}
+
 
 export default connect()(DemoCarousel);

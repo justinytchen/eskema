@@ -18,3 +18,8 @@ jumbotron
 
 share
 <a href="https://www.freepik.com/vectors/background">Background vector created by pikisuperstar - www.freepik.com</a>
+
+whiteboard
+<a href="https://www.freepik.com/vectors/background">Background vector created by katemangostar - www.freepik.com</a>
+
+<a href='https://www.freepik.com/vectors/banner'>Banner vector created by brgfx - www.freepik.com</a>

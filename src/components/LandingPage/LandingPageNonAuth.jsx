@@ -7,23 +7,13 @@ import DemoCarousel from './DemoCarousel';
 import bgImage from '../../images/jumbotronbackground.jpg';
 import logo from '../../images/logo.png';
 import Features from './Features';
+import RegisterLoginButton from './RegisterLoginButton';
+import GetStarted from './GetStarted';
 
 class LandingPageNonAuthBase extends Component {
     createNewBoard() {
         const guid = newGuid();
         this.props.history.push("/board/" + guid);
-    }
-
-    onRegisterLogin() {
-        this.props.firebase.authMgr
-            .doSigninWithGoogleAuth()
-            .then(authUser => {
-                this.props.firebase.userMgr.addUser(authUser.user);
-            })
-            .catch(error => {
-                this.setState({ error });
-                console.log(error);
-            });
     }
 
     render() {
@@ -44,7 +34,7 @@ class LandingPageNonAuthBase extends Component {
                     </Nav>
                     <Nav className = "navbar-buttons">
                         <Button className = "light-text-button" variant="outline-secondary">About</Button>
-                        <Button className = "light-text-button" variant="outline-secondary" onClick={() => this.onRegisterLogin()}>Register/Login</Button>
+                        <RegisterLoginButton/>
                         <NewBoardButton />
                     </Nav>
                 </Navbar>
@@ -53,16 +43,17 @@ class LandingPageNonAuthBase extends Component {
                         <Row className="justify-content-md-center">
                             <Col xs lg="2">
                             </Col>
-                            <Col md="auto" className = "jumbotron-popup"><Row>
+                            <Col md="auto" className = "jumbotron-popup">
+                                <Row className = "justify-content-center">
                                     <h1>Welcome to eskema!</h1>
                                 </Row>
-                                <Row>
+                                <Row className = "justify-content-center">
                                     <p>
                                         A virtual whiteboard for education, productivity, or fun
                                     </p>
                                 </Row>
-                                <Row>
-                                    <Button variant="primary">Get Started</Button>
+                                <Row className = "justify-content-center">
+                                    <NewBoardButton buttonText = "Get Started"/>
                                 </Row></Col>
                             <Col xs lg="2">
                             </Col>
@@ -71,6 +62,7 @@ class LandingPageNonAuthBase extends Component {
                 </div>
                 <DemoCarousel />
                 <Features />
+                <GetStarted />
             </div>
         );
     }

@@ -17,7 +17,7 @@ class NewBoardButtonBase extends Component{
 
     render(){
         return (
-            <Button variant="primary" onClick = {this.createNewBoard.bind(this)}>New Board</Button>
+        <Button variant="primary" onClick = {this.createNewBoard.bind(this)}>{this.props.buttonText ? this.props.buttonText: "New Board"}</Button>
         );
     }
 }
