@@ -108,14 +108,22 @@ class DashboardCanvas extends Component {
     }
 
     boardDataLoaded(data) {
+        if(!data)
+            return;
         var savedData = data.savedDrawing;
-        savedData = this.U8to16(savedData);
-        savedData = decompress(savedData);
 
-        this.canvasRef.loadSaveData(savedData, true);
+        if(savedData){
+            savedData = this.U8to16(savedData);
+            savedData = decompress(savedData);
+    
+            this.canvasRef.loadSaveData(savedData, true);
+        }
+
         const widgets = data.widgets;
-        for (var i = 0; i < widgets.length; i += 1) {
-            this.props.dispatch(addSavedWidget(widgets[i], this.props.boardID));
+        if(widgets){
+            for (var i = 0; i < widgets.length; i += 1) {
+                this.props.dispatch(addSavedWidget(widgets[i], this.props.boardID));
+            }
         }
     }
 

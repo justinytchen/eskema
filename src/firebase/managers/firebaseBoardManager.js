@@ -1,18 +1,31 @@
 import "firebase/auth";
+import firebase from "firebase";
 
 class FirebaseBoardManager{
     constructor(db){
         this.db = db;
     }
 
-    addNewBoard(owner, callback){
+    addNewBoard(owner, callback) {
+        var ownerID = (owner) ? owner.getUid() : null;
         this.db.collection("boards").add({
-            owner:owner.uid
-        }).then(function(docRef) {
+            owner: ownerID
+        }).then(function (docRef) {
             console.log("Added new board", docRef.id);
             callback(docRef.id);
-        })
-        .catch(function(error) {
+
+            
+            if (owner) {
+                var userRef = this.db.collection('users').doc(owner.getUid());
+                userRef.update({
+                    boards: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+                })
+                .catch(function (error) {
+                    console.error("Error adding document: ", error);
+                });
+            }
+        }.bind(this))
+        .catch(function (error) {
             console.error("Error adding document: ", error);
         });
     }
