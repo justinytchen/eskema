@@ -78,3 +78,10 @@ export const saveDrawing = (id, savedDrawing) => ({
     id: id,
     savedDrawing: savedDrawing
 })
+
+export const setDrawMode = (id, drawMode) => ({
+    type: 'SET_DRAW_MODE',
+    id: id,
+    drawMode: drawMode
+})
+

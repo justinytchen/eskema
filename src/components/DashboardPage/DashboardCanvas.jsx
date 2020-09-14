@@ -8,6 +8,7 @@ import { unselectAll, addSavedWidget, createBoard, deleteWidgets, updateDrawing,
 import CanvasDraw from "react-canvas-draw";
 import { compress, decompress } from "lz-string";
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import DashboardNav from "./DashboardNav";
 
 import keydown, { Keys } from 'react-keydown';
 
@@ -131,6 +132,9 @@ class DashboardCanvas extends Component {
         return (
             <div className="dashboard-canvas"
                 onMouseDown={this.onMouseDown.bind(this)}>
+
+                {!this.props.demo ? <DashboardNav boardID={this.props.boardID} widgets = {this.props.widgets} savedDrawing = {this.props.savedDrawing} board={this.props.board}/> : null}
+                
                 <div className="canvas-container">
                     <CanvasDraw 
                         onChange={this.onDraw.bind(this)} 
@@ -139,6 +143,8 @@ class DashboardCanvas extends Component {
                         lazyRadius = {1}
                         canvasWidth="100%" 
                         canvasHeight="100%" 
+                        hideInterface={!this.props.board || !this.props.board.drawMode}
+                        disabled={!this.props.board || !this.props.board.drawMode}
                         ref={canvasDraw => (this.canvasRef = canvasDraw)} />
                 </div>
                 {this.renderWidgets()}
@@ -156,7 +162,8 @@ const mapStateToProps = (state, ownProps) => {
         const curWidgets = state.widgets.filter(w => curBoard.widgets.includes(w.id));
         return ({
             widgets: curWidgets,
-            savedDrawing: curBoard.savedDrawing
+            savedDrawing: curBoard.savedDrawing,
+            board: curBoard
         });
     }
     return ({

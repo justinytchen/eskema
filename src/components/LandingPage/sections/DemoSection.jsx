@@ -34,8 +34,8 @@ class DemoSection extends Component {
         var typistContent = [];
         for (var i = 0; i < this.state.messages.length; i++) {
             typistContent.push(this.state.messages[i]);
-            typistContent.push(<Typist.Delay ms={300} />);
-            typistContent.push(<Typist.Backspace count={this.state.messages[i].length} delay={600} />);
+            typistContent.push(<Typist.Delay ms={300} key={i}/>);
+            typistContent.push(<Typist.Backspace count={this.state.messages[i].length} delay={600}  key={2*i}/>);
             typistContent.push('');
         }
         const message = this.state.messages[0];

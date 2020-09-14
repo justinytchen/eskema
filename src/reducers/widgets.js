@@ -1,5 +1,4 @@
 const widgets = (state = [], action) => {
-    console.log(action);
     switch (action.type) {
         case 'CREATE_WIDGET':
             return [

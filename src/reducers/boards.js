@@ -17,7 +17,8 @@ const boards = (state = [], action) => {
                 {
                     id: action.id,
                     widgets: action.widgets.map(w => w.id),
-                    savedDrawing: action.savedDrawing
+                    savedDrawing: action.savedDrawing,
+                    drawMode: false
                 }
             ];
         case 'ADD_SAVED_WIDGET':
@@ -42,6 +43,13 @@ const boards = (state = [], action) => {
                     return board;
                 }
                 return { ...board, savedDrawing: action.savedDrawing }
+            });
+        case 'SET_DRAW_MODE':
+            return state.map(board => {
+                if (board.id !== action.id) {
+                    return board;
+                }
+                return { ...board, drawMode: action.drawMode }
             });
         default:
             return state;
