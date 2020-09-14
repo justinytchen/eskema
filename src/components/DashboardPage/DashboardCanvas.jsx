@@ -69,7 +69,7 @@ class DashboardCanvas extends Component {
         const widgetsToDelete = this.props.widgets.filter((w) => (w.selected)).map(w => w.id);
         this.props.dispatch(deleteWidgets(widgetsToDelete, this.props.boardID));
 
-        if(this.props.board){
+        if (this.props.board) {
             console.log(this.props.board.drawMode);
             this.props.dispatch(setDrawMode(this.props.boardID, !this.props.board.drawMode));
         }
@@ -90,11 +90,18 @@ class DashboardCanvas extends Component {
     }
 
     renderWidget(widget) {
+        const drawMode = this.props.board && this.props.board.drawMode;
+        const widgetProps = {
+            key: widget.id,
+            widget: widget,
+            canMove: !drawMode,
+            canResize: !drawMode
+        };
         switch (widget.widgetType) {
             case WidgetType.TextFieldWidget:
-                return <TextFieldWidget key={widget.id} widget={widget} />;
+                return <TextFieldWidget {...widgetProps} />;
             case WidgetType.NumberWidget:
-                return <NumberWidget key={widget.id} widget={widget} />;
+                return <NumberWidget {...widgetProps} />;
             default:
                 return null;
         }
@@ -134,23 +141,42 @@ class DashboardCanvas extends Component {
         this.props.dispatch(saveDrawing(this.props.boardID, savedData));
     }
 
+    onMouseMove(ev) {
+        if (ev.clientY < 10) {
+            this.setState({
+                showNavBar: true
+            });
+        }
+        else if(!ev.target.className){
+            this.setState({
+                showNavBar: false
+            });
+        }
+    };
+
     render() {
         const enabled = this.props.board && this.props.board.drawMode;
         return (
             <div className="dashboard-canvas"
-                onMouseDown={this.onMouseDown.bind(this)}>
+                onMouseDown={this.onMouseDown.bind(this)}
+                onMouseMove={this.onMouseMove.bind(this)}>
 
-                {!this.props.demo ? <DashboardNav boardID={this.props.boardID} widgets = {this.props.widgets} savedDrawing = {this.props.savedDrawing} board={this.props.board}/> : null}
-                
+                <DashboardNav
+                    show={!this.props.demo && this.state.showNavBar}
+                    boardID={this.props.boardID}
+                    widgets={this.props.widgets}
+                    savedDrawing={this.props.savedDrawing}
+                    board={this.props.board} />
+
                 <div className={"canvas-container" + ((enabled) ? "" : " canvas-disabled")}>
-                    <CanvasDraw 
-                        onChange={this.onDraw.bind(this)} 
-                        hideGrid 
+                    <CanvasDraw
+                        onChange={this.onDraw.bind(this)}
+                        hideGrid
                         brushRadius={4}
-                        brushColor={enabled ? "black": "white"}
-                        lazyRadius = {1}
-                        canvasWidth="100%" 
-                        canvasHeight="100%" 
+                        brushColor={enabled ? "black" : "white"}
+                        lazyRadius={1}
+                        canvasWidth="100%"
+                        canvasHeight="100%"
                         hideInterface={!enabled}
                         disabled={!enabled}
                         ref={canvasDraw => (this.canvasRef = canvasDraw)} />

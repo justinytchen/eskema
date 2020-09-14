@@ -109,12 +109,13 @@ class WidgetContainer extends Component{
                  onDragStop = {this.dragStop.bind(this)}
                  onDrag = {this.onDrag.bind(this)}
                  onClick = {this.onMouseClick.bind(this)}
-                 enableResizing = {this.props.widget.editMode ? this.props.enableResizing : disableResizing}
+                 enableResizing = {(this.props.widget.editMode && this.props.canResize) ? this.props.enableResizing : disableResizing}
                  onMouseEnter = {this.onMouseEnter.bind(this)}
                  onMouseLeave = {this.onMouseExit.bind(this)}
                  ref={c => { this.rnd = c; }}
                  default={defaults}
                  bounds={"parent"}
+                 disableDragging={!this.props.canMove}
             >
                 <div className={className} 
                     onDoubleClick = {this.toggleEditMode.bind(this)} >

@@ -40,6 +40,7 @@ class TextFieldWidget extends Component{
                 getCurrentState = {() => this.getCurrentState()}
                 defaultState = {""}
                 widget = {this.props.widget}
+                {...this.props}
             />
         );
     }

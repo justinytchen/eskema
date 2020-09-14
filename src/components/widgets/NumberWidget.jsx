@@ -42,6 +42,7 @@ class NumberWidget extends Component{
                 getCurrentState = {() => this.getCurrentState()}
                 defaultState = {0}
                 widget = {this.props.widget}
+                {...this.props}
             />
         );
     }

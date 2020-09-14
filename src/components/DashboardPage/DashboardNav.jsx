@@ -8,6 +8,7 @@ import { setDrawMode } from '../../actions';
 class DashboardNav extends Component{
     onSave(){
         this.props.firebase.boardMgr.saveBoard(this.props.boardID, this.props.widgets, this.props.savedDrawing);
+        
     }
 
     onToggleDrawMode(){
@@ -17,8 +18,11 @@ class DashboardNav extends Component{
     }
 
     render(){
+        if(!this.props.show){
+            return null;
+        }
         return (
-            <Container className = "dashboard-page-nav">
+            <Container className = "dashboard-page-nav" >
                 <Row>
                     <Col>
                         <CreateWidgetModal />
