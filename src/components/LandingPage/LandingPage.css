@@ -47,6 +47,7 @@
 .landing-demo-section .row{
     padding: 10px;
     margin: 10px !important;
+    width: 100%;
 }
 
 .demo-button-container{
