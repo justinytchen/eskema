@@ -7,6 +7,7 @@ import Overview from "./components/Overview";
 import { withAuthentication } from './session';
 import LandingPage from './components/LandingPage/LandingPage';
 import HomePage from './components/LandingPage/HomePage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 class App extends Component{
   constructor(props){
@@ -25,6 +26,7 @@ class App extends Component{
             <Route path="/board/:id"  component={DashboardPage} />
             <Route path="/overview"  component={Overview} />
             <Route path="/home"  component={LandingPage} />
+            <Route path="/about"  component={AboutPage} />
             <Route render={() => <Redirect to={{pathname: "/"}} />} />
             
           </Switch>

@@ -1,4 +1,4 @@
-import { connectAdvanced } from "react-redux"
+import undoable, { distinctState } from 'redux-undo'
 
 const boards = (state = [], action) => {
     switch (action.type) {
@@ -49,3 +49,4 @@ const boards = (state = [], action) => {
 }
 
 export default boards;
+

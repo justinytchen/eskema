@@ -30,7 +30,7 @@ class DashboardNav extends Component{
 
 
 const mapStateToProps = (state, ownProps) => {
-    const boardID = ownProps.boardID
+    const boardID = ownProps.boardID;
     var boards = state.boards.filter((b) => (b.id == boardID));
     if(boards.length > 0){
         const curBoard = boards[0];

@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { withFirebase } from '../../firebase';
 import { unselectAll, addSavedWidget, createBoard, deleteWidgets, updateDrawing, saveDrawing } from '../../actions';
 import CanvasDraw from "react-canvas-draw";
-import { compress, decompress } from "lz-string"
+import { compress, decompress } from "lz-string";
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import keydown, { Keys } from 'react-keydown';
 
@@ -48,6 +49,17 @@ class DashboardCanvas extends Component {
     onCtrlS(e) {
         e.preventDefault();
         this.props.firebase.boardMgr.saveBoard(this.props.boardID, this.props.widgets, this.props.savedDrawing);
+    }
+
+    @keydown('ctrl+z') // or specify `which` code directly, in this case 13
+    onCtrlZ(e) {
+        this.canvasRef.undo();
+    }
+
+    @keydown('ctrl+shift+z') // or specify `which` code directly, in this case 13
+    onCtrlShiftZ(e) {
+        console.log("redo");
+        this.props.dispatch(UndoActionCreators.redo())
     }
 
     @keydown('backspace') // or specify `which` code directly, in this case 13
@@ -123,8 +135,8 @@ class DashboardCanvas extends Component {
                     <CanvasDraw 
                         onChange={this.onDraw.bind(this)} 
                         hideGrid 
-                        brushRadius="4"
-                        lazyRadius = "1"
+                        brushRadius={4}
+                        lazyRadius = {1}
                         canvasWidth="100%" 
                         canvasHeight="100%" 
                         ref={canvasDraw => (this.canvasRef = canvasDraw)} />
@@ -136,7 +148,7 @@ class DashboardCanvas extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const boardID = ownProps.boardID
+    const boardID = ownProps.boardID;
     var boards = state.boards.filter((b) => (b.id == boardID));
     if (boards.length > 0) {
         const curBoard = boards[0];

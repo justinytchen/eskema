@@ -28,6 +28,7 @@
     "react-scripts": "3.4.3",
     "react-typist": "^2.0.5",
     "redux": "^4.0.5",
+    "redux-undo": "^1.0.1",
     "use-fit-text": "^2.3.0"
   },
   "scripts": {

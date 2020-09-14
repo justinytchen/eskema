@@ -1,4 +1,5 @@
 const widgets = (state = [], action) => {
+    console.log(action);
     switch (action.type) {
         case 'CREATE_WIDGET':
             return [
@@ -79,4 +80,4 @@ const widgets = (state = [], action) => {
     }
 }
 
-export default widgets
+export default widgets;

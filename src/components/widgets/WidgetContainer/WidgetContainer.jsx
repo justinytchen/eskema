@@ -11,8 +11,8 @@ class WidgetContainer extends Component{
         this.state  = {
             editMode: this.props.editMode
         }
-        if(!this.props.widget.state)
-            this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
+        // if(!this.props.widget.state)
+        //     this.props.dispatch(setWidgetState(this.props.widget.id, this.props.defaultState));
     }
     
     toggleEditMode(){
